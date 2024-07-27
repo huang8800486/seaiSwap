@@ -11,7 +11,6 @@ export const Wrapper = styled.div`
   position: relative;
   background-color: ${({ theme }) => theme.colors.bitbackground};
   font-size: ${getMedia(['12px', '14px', '16px'])};
-  margin-top: -1px;
 `
 export const CommonWrapper = styled.div`
   width: 100%;
@@ -20,3 +19,4 @@ export const CommonWrapper = styled.div`
   margin: 0 auto;
   position: relative;
 `
+

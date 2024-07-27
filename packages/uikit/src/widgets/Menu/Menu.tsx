@@ -1,6 +1,8 @@
 import throttle from "lodash/throttle";
 import React, { useEffect, useRef, useState } from "react";
 import { ThemeSwitcher, Button } from "@pancakeswap/uikit";
+import { useWeb3React } from "@pancakeswap/wagmi";
+import { SamllNavIcon } from "@pancakeswap/uikit";
 import Link from "next/link";
 import styled from "styled-components";
 import BottomNav from "../../components/BottomNav";
@@ -9,6 +11,8 @@ import Flex from "../../components/Box/Flex";
 import Footer from "../../components/Footer";
 import MenuItems from "../../components/MenuItems/MenuItems";
 import { SubMenuItems } from "../../components/SubMenuItems";
+import { useOptionsShowSamllNav } from "state/options/hooks";
+import { CSSTransition } from "react-transition-group";
 import { useMatchBreakpoints } from "../../contexts";
 import CakePrice from "../../components/CakePrice/CakePrice";
 import Logo from "./components/Logo";
@@ -31,8 +35,8 @@ const StyledNav = styled.nav<{ isMobile: boolean }>`
   width: 100%;
   height: ${({ isMobile }) => (isMobile ? "56px" : `${MENU_HEIGHT}px`)};
   // background-color: ${({ theme }) => theme.nav.background};
-  background-color: #000;
-  border-bottom: 1px solid #000;
+  background-color: #020b15;
+  border-bottom: 1px solid #020b15;
   transform: translate3d(0, 0, 0);
 
   padding-left: 16px;
@@ -67,6 +71,41 @@ const Inner = styled.div<{ isPushed: boolean; showMenu: boolean }>`
   transform: translate3d(0, 0, 0);
   max-width: 100%;
 `;
+const SubNavLayer = styled.div<{ optionsShowSamllNav: boolean }>`
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  display: ${({ optionsShowSamllNav }) => (optionsShowSamllNav ? 'block' : `none`)};
+`;
+const SubNavContent = styled.div<{ optionsShowSamllNav: boolean }>`
+  position: fixed;
+  top: 0;
+  left: ${({ optionsShowSamllNav }) => (optionsShowSamllNav ? 0 : `-100%`)};
+  width: 75.73%;
+  height: 100%;
+  transition: left 0.3s;
+  background: rgba(2, 11, 21, 0.9);
+`;
+const AddressText = styled.div`
+  width: 100%;
+  position: relative;
+  margin-bottom: 35px;
+  color: #fff;
+  padding: 80px 20px 0;
+  h2 {
+    font-size: 24px;
+    margin-bottom: 7px;
+  }
+  p {
+    font-size: 12px;
+  }
+`;
 
 const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
   linkComponent = "a",
@@ -87,7 +126,11 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
   children,
 }) => {
   const { isMobile, isMd } = useMatchBreakpoints();
+  const { account } = useWeb3React();
+  const accountEllipsis = account ? `${account.substring(0, 8)}...${account.substring(account.length - 5)}` : null;
+  const [optionsShowSamllNav] = useOptionsShowSamllNav();
   const [showMenu, setShowMenu] = useState(true);
+  const ref = useRef(null);
   const refPrevOffset = useRef(typeof window === "undefined" ? 0 : window.pageYOffset);
   const topBannerHeight = isMobile ? TOP_BANNER_HEIGHT_MOBILE : TOP_BANNER_HEIGHT;
 
@@ -127,7 +170,7 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
 
   const subLinksWithoutMobile = subLinks?.filter((subLink) => !subLink.isMobileOnly);
   const subLinksMobileOnly = subLinks?.filter((subLink) => subLink.isMobileOnly);
-
+  const { trade } = SamllNavIcon();
   return (
     <MenuContext.Provider value={{ linkComponent }}>
       <Wrapper>
@@ -137,7 +180,7 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
             <Flex>
               <Logo isDark={isDark} href={homeLink?.href ?? "/"} />
               {!isMobile && <MenuItems items={links} activeItem={activeItem} activeSubItem={activeSubItem} ml="24px" />}
-              {!isMobile && (
+              {/* {!isMobile && (
                 <Flex alignItems="center">
                   <a href="https://nft.webxbank.pro/" target="_blank" rel="noreferrer">
                     <Button height={36} as="a">
@@ -145,7 +188,7 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
                     </Button>
                   </a>
                 </Flex>
-              )}
+              )} */}
             </Flex>
             <Flex alignItems="center" height="100%">
               {/* {!isMobile && !isMd && (
@@ -165,9 +208,9 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
                   hideLanguage
                 />
               </Box>
-              <Box mr="8px">
+              {/* <Box mr="8px">
                 <ThemeSwitcher isDark={isDark} toggleTheme={toggleTheme} />
-              </Box>
+              </Box> */}
             </Flex>
           </StyledNav>
         </FixedContainer>
@@ -201,7 +244,17 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
             />
           </Inner>
         </BodyWrapper>
-        {isMobile && <BottomNav items={links} activeItem={activeItem} activeSubItem={activeSubItem} />}
+        {isMobile && (
+          <SubNavLayer optionsShowSamllNav={optionsShowSamllNav}>
+            <SubNavContent optionsShowSamllNav={optionsShowSamllNav}>
+              <AddressText>
+                <h2>Address</h2>
+                <p>{accountEllipsis}</p>
+              </AddressText>
+              <BottomNav items={links} activeItem={activeItem} activeSubItem={activeSubItem} />
+            </SubNavContent>
+          </SubNavLayer>
+        )}
       </Wrapper>
     </MenuContext.Provider>
   );

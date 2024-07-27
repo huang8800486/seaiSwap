@@ -108,10 +108,10 @@ function MyApp(props: AppProps<{ initialReduxState: any }>) {
           `,
         }}
       />
-      <script
+      {/* <script
         id="ze-snippet"
         src="https://static.zdassets.com/ekr/snippet.js?key=60072a72-15e4-41e1-8e20-ca2d99fea8f5"
-      />
+      /> */}
     </>
   )
 }

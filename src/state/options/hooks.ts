@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { AppState, useAppDispatch } from '../index'
-import { updatedOptionsInvitedAddress } from './actions'
+import { updatedOptionsInvitedAddress, updatedOptionsShowSamllNav } from './actions'
 
 export function useOptionsInvitedAddress(): [string, (address: string) => void] {
   const dispatch = useAppDispatch()
@@ -17,4 +17,19 @@ export function useOptionsInvitedAddress(): [string, (address: string) => void] 
   )
 
   return [optionsInvitedAddress, setOptionsInvitedAddress]
+}
+export function useOptionsShowSamllNav(): [boolean, (flag: boolean) => void] {
+  const dispatch = useAppDispatch()
+  const optionsShowSamllNav = useSelector<AppState, AppState['options']['optionsShowSamllNav']>((state) => {
+    return state.options.optionsShowSamllNav
+  })
+
+  const setOptionsShowSamllNav = useCallback(
+    (flag: boolean) => {
+      dispatch(updatedOptionsShowSamllNav({ optionsShowSamllNav: flag }))
+    },
+    [dispatch],
+  )
+
+  return [optionsShowSamllNav, setOptionsShowSamllNav]
 }

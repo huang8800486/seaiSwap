@@ -37,11 +37,11 @@ export function Updaters() {
   }, [])
   return (
     <>
-      {isMounted && (
+      {/* {isMounted && (
         <BaseLayout>
           <img src="/images/start.gif" alt="" />
         </BaseLayout>
-      )}
+      )} */}
       <ListsUpdater />
       <TransactionUpdater />
       <MulticallUpdater />

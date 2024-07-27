@@ -9,14 +9,15 @@ import { UserMenuItem } from "./styles";
 
 export const StyledUserMenu = styled(Flex)`
   align-items: center;
-  background-color: var(--colors-primary);
+  // background-color: var(--colors-primary);
+  background-color: #27334D;
   border-radius: 16px;
   box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   display: inline-flex;
   height: 32px;
-  padding-left: 8px;
-  padding-right: 8px;
+  padding-left: 20px;
+  padding-right: 20px;
   position: relative;
 
   &:hover {
@@ -26,8 +27,10 @@ export const StyledUserMenu = styled(Flex)`
 
 export const LabelText = styled.div`
   // color: ${({ theme }) => theme.colors.text};
-  color: #17181e;
-  display: none;
+  color: #fff;
+  display: block;
+  margin-left: 8px;
+  margin-right: 4px;
   font-weight: 600;
 
   ${({ theme }) => theme.mediaQueries.sm} {
@@ -38,6 +41,7 @@ export const LabelText = styled.div`
 `;
 export const WalletImg = styled.div`
   max-width: 20px;
+  display:none;
   img {
     width: 100%;
     display: block;

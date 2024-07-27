@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
-import { useTranslation } from '@pancakeswap/localization'
+import { useOptionsShowSamllNav } from "state/options/hooks";
+import { useTranslation } from "@pancakeswap/localization";
 import styled, { keyframes } from "styled-components";
 import Flex from "../../../components/Box/Flex";
 import { LogoIcon, LogoWithTextIcon } from "../../../components/Svg";
@@ -44,19 +45,42 @@ const StyledLink = styled("a")`
   }
 `;
 const LogoImg = styled("div")`
-  max-width: 100px;
+  max-width: 60px;
+`;
+const MenuImg = styled("div")`
+  width: 20px;
+  margin-right: 9px;
+  img {
+    width: 100%;
+    display: block;
+  }
+  ${({ theme }) => theme.mediaQueries.sm} {
+    display: none;
+  }
 `;
 
 const Logo: React.FC<React.PropsWithChildren<Props>> = ({ isDark, href }) => {
   const { linkComponent } = useContext(MenuContext);
   const isAbsoluteUrl = href.startsWith("http");
-  const { currentLanguage } = useTranslation()
+  const { currentLanguage } = useTranslation();
+  const [optionsShowSamllNav, setOptionsShowSamllNav] = useOptionsShowSamllNav();
+  console.log("optionsShowSamllNav", optionsShowSamllNav);
   const innerLogo = (
     <>
-      {/* <LogoIcon className="mobile-icon" />
-      <LogoWithTextIcon className="desktop-icon" isDark={isDark} /> */}
+      <MenuImg
+        onClick={() => {
+          setOptionsShowSamllNav(!optionsShowSamllNav);
+        }}
+      >
+        <img src="/images/menu.png" alt="" />
+      </MenuImg>
+      {/* <LogoWithTextIcon className="desktop-icon" isDark={isDark} /> */}
       <LogoImg>
-        {currentLanguage.locale === 'zh-CN' ? <img src="/images/nav-title-dark.png" alt="" /> : <img src="/images/nav-title-light.png" alt="" />}
+        {currentLanguage.locale === "zh-CN" ? (
+          <img src="/images/nav-title-dark.png" alt="" />
+        ) : (
+          <img src="/images/nav-title-light.png" alt="" />
+        )}
         {/* <img src="/images/nav-title-light.png" alt="" /> */}
       </LogoImg>
     </>

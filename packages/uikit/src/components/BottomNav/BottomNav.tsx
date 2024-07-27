@@ -1,6 +1,8 @@
 import React, { useState, memo } from "react";
 import BottomNavItem from "../BottomNavItem";
 import StyledBottomNav from "./styles";
+import { Link } from "@pancakeswap/uikit";
+import { useOptionsShowSamllNav } from "state/options/hooks";
 import { Box } from "../Box";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import { BottomNavProps } from "./types";
@@ -15,10 +17,11 @@ const BottomNav: React.FC<React.PropsWithChildren<BottomNavProps>> = ({
 }) => {
   const [menuOpenByIndex, setMenuOpenByIndex] = useState({});
   const isBottomMenuOpen = Object.values(menuOpenByIndex).some((acc) => acc);
+  const [optionsShowSamllNav, setOptionsShowSamllNav] = useOptionsShowSamllNav();
   return (
     <>
       {isBottomMenuOpen && <Overlay />}
-      <StyledBottomNav justifyContent="space-around" {...props}>
+      <StyledBottomNav {...props}>
         {items.map(
           (
             { label, items: menuItems, href, icon, fillIcon, showOnMobile = true, showItemsOnMobile = true, disabled },
@@ -27,30 +30,21 @@ const BottomNav: React.FC<React.PropsWithChildren<BottomNavProps>> = ({
             const statusColor = menuItems?.find((menuItem) => menuItem.status !== undefined)?.status?.color;
             return (
               showOnMobile && (
-                <DropdownMenu
-                  key={`${label}#${href}`}
-                  items={menuItems}
-                  isBottomNav
-                  activeItem={activeSubItem}
-                  showItemsOnMobile={showItemsOnMobile}
-                  setMenuOpenByIndex={setMenuOpenByIndex}
-                  index={index}
-                  isDisabled={disabled}
+                <Link
+                  href={href}
+                  onClick={() => {
+                    setOptionsShowSamllNav(false);
+                  }}
+                  className={activeItem === href ? 'active' : ''}
                 >
-                  <Box>
-                    <NotificationDot show={!!statusColor} color={statusColor}>
-                      <BottomNavItem
-                        href={href}
-                        disabled={disabled}
-                        isActive={href === activeItem}
-                        label={label}
-                        icon={icon}
-                        fillIcon={fillIcon}
-                        showItemsOnMobile={showItemsOnMobile}
-                      />
-                    </NotificationDot>
-                  </Box>
-                </DropdownMenu>
+                  <h3>
+                    <img src={icon.src} alt="" />
+                  </h3>
+                  <p>{label}</p>
+                  <span>
+                    <img src="/images/icons/arrow-right.png" alt="" />
+                  </span>
+                </Link>
               )
             );
           }
