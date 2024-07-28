@@ -26,7 +26,7 @@ export type ConfigMenuDropDownItemsType = DropdownMenuItems & { hideSubNav?: boo
 export type ConfigMenuItemsType = Omit<MenuItemsType, 'items'> & { hideSubNav?: boolean; image?: string } & {
   items?: ConfigMenuDropDownItemsType[]
 }
-const { home, trade, liquidity, pledge, invite } = SamllNavIcon()
+const { home, trade, liquidity, pledge, invite, nft } = SamllNavIcon()
 const addMenuItemSupported = (item, chainId) => {
   if (!chainId || !item.supportChainIds) {
     return item
@@ -96,7 +96,7 @@ const config: (
     },
     {
       label: t('NFT'),
-      icon: SwapIcon,
+      icon: nft,
       fillIcon: SwapFillIcon,
       href: '/nft',
       showItemsOnMobile: true,

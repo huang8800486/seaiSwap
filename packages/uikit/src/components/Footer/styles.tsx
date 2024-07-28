@@ -27,8 +27,20 @@ export const getMedia2 = (value: string[]) => () => {
   return result;
 };
 export const StyledFooter = styled(Flex)`
-  background: #000000;
+  background-color: #000000;
   color: #fff;
+  // background-image: url("/images/seai/footer_bg.png");
+  // background-position: top center;
+  // background-size: cover;
+  margin-bottom: 0;
+  padding-bottom: 82px;
+  margin-top: -30px;
+  position: relative;
+  .footer_bg {
+    position: absolute;
+    top: -43px;
+    width: 100%;
+  }
 `;
 
 export const StyledList = styled.ul`
@@ -97,149 +109,34 @@ export const StyledFootContent = styled.div`
   width: 100%;
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
-  .coin_detail {
-    width: ${getMedia2(["100%", "100%", "100%", "50%", "424px", "424px"])};
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 7px;
-    padding: 24px;
-    margin-bottom: 24px;
-    .coin_wrapper {
-      width: 100%;
-      position: relative;
+  .footer_wrap {
+    // width: 100%;
+    // display: flex;
+    // justify-content: center;
+    text-align: center;
+    .relate_box {
       display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      .coin_price {
-        width: ${getMedia(["100%", "100%", "30%"])};
-        display: flex;
-        margin-bottom: 24px;
-        .coin_img {
-          width: 38px;
-          height: 38px;
-        }
-        .price_box {
-          margin-left: 11px;
-          span {
-            color: #828282;
-            display: block;
-            margin-bottom: 2px;
-          }
-          p {
-            font-size: 16px;
-          }
-        }
-      }
-      .coin_total_list {
-        width: ${getMedia(["100%", "100%", "55%"])};
-        .coin_list {
-          font-size: 12px;
-          margin-bottom: 16px;
+      justify-content: center;
+      a {
+        margin: 0 7px;
+        width: 26px;
+        height: 26px;
+        img {
           width: 100%;
-          position: relative;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          p {
-            color: #828282;
-          }
-        }
-      }
-      .coin_buy {
-        position: ${getMedia(["absolute", "absolute", "relative"])};
-        right: ${getMedia(["0", "0", "auto"])};
-        margin-top: ${getMedia(["0", "0", "24px"])};
-        display: flex;
-        align-items: center;
-        .add_coin {
-          width: 40px;
-          height: 40px;
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 50%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin-right: 12px;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          &:hover {
-            opacity: 0.6;
-          }
-          img {
-            width: 24px;
-            display: block;
-          }
+          display: block;
         }
       }
     }
-  }
-  .relate_detail {
-    width: ${getMedia2(["100%", "100%", "100%", "45%", "49%", "57%"])};
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    .about_box {
-      display: flex;
-      justify-content: space-between;
-      width: ${getMedia2(["100%", "100%", "100%", "100%", "100%", `calc(100% - 172px)`])};
-      font-size: 12px;
-      padding-right: ${getMedia(["0", "40px", "60px"])};
-      ul {
-        margin-bottom: 0;
-      }
+    span {
+      fotn-size: ${getMedia(["16px", "18px", "20px"])};
+      display: block;
+      margin: 16px 0 4px;
     }
-    .communlty_box {
-      width: ${getMedia2(["100%", "100%", "100%", "100%", "100%", `172px`])};
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      h2 {
-        margin-bottom: 16px;
-        width: 100%;
-        position: relative;
-        font-size: 16px;
-        line-height: 18px;
-        color: ${({ theme }) => theme.colors.primary};
-      }
-      .communlty_icon {
-        width: ${getMedia2(["100%", "100%", "50%", "100%", "100%", `100%`])};
-      }
-      .communlty_txt {
-        width: ${getMedia2(["100%", "100%", "50%", "100%", "100%", `100%`])};
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        .txt_box {
-          width: ${getMedia2(["48%", "48%", "48%", "48%", "48%", `100%`])};
-          position: relative;
-          border-radius: 7px;
-          background: rgba(255, 255, 255, 0.1);
-          margin-bottom: 16px;
-        }
-        .certik {
-          padding: 8px 16px;
-        }
-        .marketplace {
-          padding: 8px;
-          display: flex;
-          font-size: 14px;
-          align-items: center;
-          .market_box {
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(136.03deg, rgb(18, 99, 241) -7.36%, rgb(246, 61, 94) 131.43%);
-            border-radius: 6px;
-            margin-right: 6px;
-            img {
-              width: 19px;
-            }
-          }
-        }
-      }
+    p {
+      color: #999999;
+      fotn-size: ${getMedia(["12px", "14px", "16px"])};
     }
   }
 `;

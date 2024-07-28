@@ -132,17 +132,6 @@ export default function Swap() {
                     </SwapTab>
                   )}
                   {currentIndex === 1 && <Liquidity />}
-                  {currentIndex === 2 && (
-                    <div>
-                      <h2>Recent transactions</h2>
-                      <p>Please connect your wallet to view your recent transactions</p>
-                    </div>
-                  )}
-                  {/* {currentIndex === 3 && (
-                    <div>
-                      <h2>Buy and Sell crypto</h2>
-                    </div>
-                  )} */}
                 </AppBody>
               </StyledInputCurrencyWrapper>
             </StyledSwapContainer>

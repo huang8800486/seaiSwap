@@ -25,7 +25,6 @@ const StyledBottomNav = styled.div`
     h3 {
       margin-right: 12px;
       width: 20px;
-      height: 20px;
       img {
         width: 100%;
         display:block;

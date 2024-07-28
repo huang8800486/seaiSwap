@@ -56,10 +56,6 @@ const SwapNavTitle: React.FC<React.PropsWithChildren<PageProps>> = ({ currentInd
       text: t('Liquidity'),
       id: 1,
     },
-    {
-      text: t('History'),
-      id: 2,
-    },
     // {
     //   text: t('Buy Crypto'),
     //   id: 3,

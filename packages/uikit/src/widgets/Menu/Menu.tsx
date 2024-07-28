@@ -1,8 +1,8 @@
 import throttle from "lodash/throttle";
 import React, { useEffect, useRef, useState } from "react";
 import { ThemeSwitcher, Button } from "@pancakeswap/uikit";
-import { useWeb3React } from "@pancakeswap/wagmi";
 import { SamllNavIcon } from "@pancakeswap/uikit";
+import { useWeb3React } from "@pancakeswap/wagmi";
 import Link from "next/link";
 import styled from "styled-components";
 import BottomNav from "../../components/BottomNav";
@@ -81,7 +81,7 @@ const SubNavLayer = styled.div<{ optionsShowSamllNav: boolean }>`
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0);
-  display: ${({ optionsShowSamllNav }) => (optionsShowSamllNav ? 'block' : `none`)};
+  display: ${({ optionsShowSamllNav }) => (optionsShowSamllNav ? "block" : `none`)};
 `;
 const SubNavContent = styled.div<{ optionsShowSamllNav: boolean }>`
   position: fixed;
@@ -245,7 +245,8 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
           </Inner>
         </BodyWrapper>
         {isMobile && (
-          <SubNavLayer optionsShowSamllNav={optionsShowSamllNav}>
+          <>
+            <SubNavLayer optionsShowSamllNav={optionsShowSamllNav} />
             <SubNavContent optionsShowSamllNav={optionsShowSamllNav}>
               <AddressText>
                 <h2>Address</h2>
@@ -253,7 +254,7 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
               </AddressText>
               <BottomNav items={links} activeItem={activeItem} activeSubItem={activeSubItem} />
             </SubNavContent>
-          </SubNavLayer>
+          </>
         )}
       </Wrapper>
     </MenuContext.Provider>
