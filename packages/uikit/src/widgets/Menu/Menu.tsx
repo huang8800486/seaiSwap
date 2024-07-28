@@ -20,12 +20,50 @@ import { MENU_HEIGHT, MOBILE_MENU_HEIGHT, TOP_BANNER_HEIGHT, TOP_BANNER_HEIGHT_M
 import { NavProps } from "./types";
 import LangSelector from "../../components/LangSelector/LangSelector";
 import { MenuContext } from "./context";
-
+export const getMedia = (value: string[]) => () => {
+  const { isMobile, isTablet } = useMatchBreakpoints();
+  return isMobile ? value[0] : isTablet ? value[1] : value[2];
+};
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
   background: url(/images/bitbank/trade.png) no-repeat center top;
   background-size: cover;
+  .realtive_box_wrap_seai {
+    position: absolute;
+    left: 0;
+    bottom: 56px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    .relate_box {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      .rela {
+        margin: 0 7px;
+        width: 26px;
+        height: 26px;
+        img {
+          width: 100%;
+          display: block;
+        }
+      }
+    }
+    span {
+      font-size: ${getMedia(["16px", "18px", "20px"])};
+      display: block;
+      margin: 16px 0 4px;
+      color: #fff;
+      width: 100%;
+    }
+    p {
+      width: 100%;
+      color: #999999;
+      font-size: ${getMedia(["12px", "14px", "16px"])};
+    }
+  }
 `;
 
 const StyledNav = styled.nav<{ isMobile: boolean }>`
@@ -128,7 +166,7 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
   const { isMobile, isMd } = useMatchBreakpoints();
   const { account } = useWeb3React();
   const accountEllipsis = account ? `${account.substring(0, 8)}...${account.substring(account.length - 5)}` : null;
-  const [optionsShowSamllNav] = useOptionsShowSamllNav();
+  const [optionsShowSamllNav, setOptionsShowSamllNav] = useOptionsShowSamllNav();
   const [showMenu, setShowMenu] = useState(true);
   const ref = useRef(null);
   const refPrevOffset = useRef(typeof window === "undefined" ? 0 : window.pageYOffset);
@@ -246,13 +284,33 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
         </BodyWrapper>
         {isMobile && (
           <>
-            <SubNavLayer optionsShowSamllNav={optionsShowSamllNav} />
+            <SubNavLayer
+              optionsShowSamllNav={optionsShowSamllNav}
+              onClick={() => {
+                setOptionsShowSamllNav(false);
+              }}
+            />
             <SubNavContent optionsShowSamllNav={optionsShowSamllNav}>
               <AddressText>
                 <h2>Address</h2>
                 <p>{accountEllipsis}</p>
               </AddressText>
               <BottomNav items={links} activeItem={activeItem} activeSubItem={activeSubItem} />
+              <div className="realtive_box_wrap_seai">
+                <div className="relate_box">
+                  <a href="https://nft.webxbank.pro/" className="rela" target="_blank" rel="noreferrer">
+                    <img src="/images/icons/facebook.png" alt="" />
+                  </a>
+                  <a href="https://nft.webxbank.pro/" className="rela" target="_blank" rel="noreferrer">
+                    <img src="/images/icons/twite.png" alt="" />
+                  </a>
+                  <a href="https://nft.webxbank.pro/" className="rela" target="_blank" rel="noreferrer">
+                    <img src="/images/icons/telegram.png" alt="" />
+                  </a>
+                </div>
+                <span>SEAI TOKEN @2024</span>
+                <p>Based on Binance Smart Chain</p>
+              </div>
             </SubNavContent>
           </>
         )}

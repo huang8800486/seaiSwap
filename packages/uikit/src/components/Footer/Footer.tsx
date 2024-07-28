@@ -58,28 +58,29 @@ const MenuItem: React.FC<React.PropsWithChildren<FooterProps>> = ({
   //   }
   // }, [pricePoolContract, account, chainId]);
   return (
-    <StyledFooter data-theme="dark" p={["40px 16px", null, "56px 40px 32px 40px"]} {...props} justifyContent="center">
-      <img className="footer_bg" src="/images/seai/footer_bg.png" alt="" />
-      <Flex flexDirection="column" width={["100%", null, "1120px;"]}>
-        <StyledFootContent>
-          <div className="footer_wrap">
-            <div className="relate_box">
-              <Link href="https://styled-system.com/api" target="_blank">
-                <img src="/images/icons/facebook.png" alt="" />
-              </Link>
-              <Link href="https://styled-system.com/api" target="_blank">
-                <img src="/images/icons/twite.png" alt="" />
-              </Link>
-              <Link href="https://styled-system.com/api" target="_blank">
-                <img src="/images/icons/telegram.png" alt="" />
-              </Link>
-            </div>
-            <span>SEAI TOKEN @2024</span>
-            <p>Based on Binance Smart Chain</p>
-          </div>
-        </StyledFootContent>
-      </Flex>
-    </StyledFooter>
+    // <StyledFooter data-theme="dark" p={["40px 16px", null, "56px 40px 32px 40px"]} {...props} justifyContent="center">
+    //   <img className="footer_bg" src="/images/seai/footer_bg.png" alt="" />
+    //   <Flex flexDirection="column" width={["100%", null, "1120px;"]}>
+    //     <StyledFootContent>
+    //       <div className="footer_wrap">
+    //         <div className="relate_box">
+    //           <Link href="https://styled-system.com/api" target="_blank">
+    //             <img src="/images/icons/facebook.png" alt="" />
+    //           </Link>
+    //           <Link href="https://styled-system.com/api" target="_blank">
+    //             <img src="/images/icons/twite.png" alt="" />
+    //           </Link>
+    //           <Link href="https://styled-system.com/api" target="_blank">
+    //             <img src="/images/icons/telegram.png" alt="" />
+    //           </Link>
+    //         </div>
+    //         <span>SEAI TOKEN @2024</span>
+    //         <p>Based on Binance Smart Chain</p>
+    //       </div>
+    //     </StyledFootContent>
+    //   </Flex>
+    // </StyledFooter>
+    <></>
   );
 };
 

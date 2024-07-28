@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { CommonWrapper, getMedia } from '../styleds'
 import CommonBox from './../CommonBox'
 import CommonItem from './../CommonItem'
+import CopyRight from './../CopyRight'
 
 const IntroWraper = styled.div`
   width: 100%;
@@ -113,6 +114,22 @@ const IntroWraper = styled.div`
       }
     }
   }
+
+  .footer_wrap {
+    // width: 100%;
+    // display: flex;
+    // justify-content: center;
+    text-align: center;
+    overflow:hidden;
+    position: relative;
+    padding: ${getMedia(['20px 0 62px', '60px 0 62px', '80px 0 62px'])};
+    .footer_bg {
+      position: absolute;
+      top: -62px;
+      width: 100%;
+      left: 0;
+    }
+  }
 `
 
 export default function IntroContent() {
@@ -192,6 +209,10 @@ export default function IntroContent() {
           </CommonItem>
         </div>
       </CommonWrapper>
+      <div className="footer_wrap">
+        <img className="footer_bg" src="/images/seai/footer_bg.png" alt="" />
+        <CopyRight />
+      </div>
     </IntroWraper>
   )
 }
