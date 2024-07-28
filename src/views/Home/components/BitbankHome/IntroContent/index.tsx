@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useWeb3React } from '@pancakeswap/wagmi'
 import { Text, Input, Button, useToast } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { copyText } from '@pancakeswap/utils/copyText'
 import Link from 'next/link'
 import { CommonWrapper, getMedia } from '../styleds'
 import CommonBox from './../CommonBox'
 import CommonItem from './../CommonItem'
+import CommonInvite from './../CommonInvite'
 import CopyRight from './../CopyRight'
 
 const IntroWraper = styled.div`
@@ -35,18 +37,6 @@ const IntroWraper = styled.div`
       &:nth-of-type(2) {
         float: ${getMedia(['none', 'right', 'right'])};
       }
-    }
-    .input_wrap {
-      margin-bottom: 22px;
-      input {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-    }
-    .button_wrap {
-      width: 100%;
-      padding: 0 20%;
     }
   }
   .intro_content {
@@ -102,25 +92,13 @@ const IntroWraper = styled.div`
       }
     }
   }
-  .invite_content {
-    margin-top: 12px;
-    span {
-      font-size: ${getMedia(['14px', '16px', '18px'])};
-      display: block;
-      margin-bottom: 14px;
-      em {
-        color: rgba(2, 196, 244, 1);
-        font-style: normal;
-      }
-    }
-  }
 
   .footer_wrap {
     // width: 100%;
     // display: flex;
     // justify-content: center;
     text-align: center;
-    overflow:hidden;
+    overflow: hidden;
     position: relative;
     padding: ${getMedia(['20px 0 62px', '60px 0 62px', '80px 0 62px'])};
     .footer_bg {
@@ -133,6 +111,7 @@ const IntroWraper = styled.div`
 `
 
 export default function IntroContent() {
+  const { t } = useTranslation()
   const { account } = useWeb3React()
   const [inviteCode, setInviteCode] = useState('')
   useEffect(() => {
@@ -178,7 +157,7 @@ export default function IntroContent() {
           </div>
         </div>
         <div className="con_wrap">
-          <CommonItem title={'邀请'} imgName={'invite_icon'} recordHref={'/'} recordText={'邀请记录'}>
+          {/* <CommonItem title={'邀请'} imgName={'invite_icon'} recordHref={'/'} recordText={'邀请记录'}>
             <div className="invite_content">
               <span>
                 已邀请人数：<em>1</em>
@@ -203,7 +182,8 @@ export default function IntroContent() {
                 复制链接
               </Button>
             </div>
-          </CommonItem>
+          </CommonItem> */}
+          <CommonInvite />
           <CommonItem title={'合作伙伴'} imgName={'relate_icon'}>
             <img src="/images/seai/relate_img.png" alt="" />
           </CommonItem>

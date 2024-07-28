@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components'
 export const CommonContent = styled.div`
   width: 100%;
   position: relative;
+  margin-bottom: 30px;
   .flag_box {
     position: absolute;
     z-index: 10;

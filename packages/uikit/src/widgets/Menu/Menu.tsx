@@ -27,7 +27,7 @@ export const getMedia = (value: string[]) => () => {
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
-  background: url(/images/bitbank/trade.png) no-repeat center top;
+  background: #020b15;
   background-size: cover;
   .realtive_box_wrap_seai {
     position: absolute;

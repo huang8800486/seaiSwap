@@ -11,7 +11,6 @@ export const CommonContent = styled.div`
   width: 100%;
   position: relative;
   padding: ${getMedia(['22px 16px', '24px 18px', '26px 20px'])};
-  margin-bottom: 30px;
   background: rgba(39, 51, 77, 0.8);
   h2 {
     color: #fff;
@@ -20,7 +19,7 @@ export const CommonContent = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     .title_img {
       width: 36px;
       height: 34px;
@@ -50,6 +49,7 @@ export const CommonContent = styled.div`
   }
 `
 interface Props {
+  isNotRecord?: string
   title?: string
   imgName?: string
   recordHref?: string
@@ -61,7 +61,7 @@ const CommonItem: React.FC<React.PropsWithChildren<Props>> = ({ title, recordHre
       <CommonBox>
         <CommonContent>
           <h2>
-            <img className="title_img" src={`/images/icons/${imgName}.png`} alt="" />
+            {imgName && <img className="title_img" src={`/images/icons/${imgName}.png`} alt="" />}
             <span>{title}</span>
             {recordHref && (
               <Link href={recordHref}>

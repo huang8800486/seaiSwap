@@ -90,7 +90,7 @@ const config: (
       label: t('Invite'),
       icon: invite,
       fillIcon: SwapFillIcon,
-      href: '/nnvite',
+      href: '/invited',
       showItemsOnMobile: true,
       items: [],
     },

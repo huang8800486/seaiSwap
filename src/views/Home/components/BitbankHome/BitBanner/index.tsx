@@ -2,12 +2,13 @@ import React from 'react'
 import styled, { useTheme } from 'styled-components'
 import Link from 'next/link'
 import { Button, Text, useMatchBreakpoints } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { Wrapper } from '../styleds'
 import { BannerWrapper } from './styleds'
-import MarketSwiper from './MarketSwiper'
 import CommonBox from './../CommonBox'
 
 export default function BitBanner() {
+  const { t } = useTranslation()
   const { isMobile, isTablet, isDesktop } = useMatchBreakpoints()
   return (
     <Wrapper>
