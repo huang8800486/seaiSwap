@@ -62,14 +62,14 @@ const config: (
     //     },
     //   ].map((item) => addMenuItemSupported(item, chainId)),
     // },
-    // {
-    //   label: t('Home'),
-    //   icon: HomeIcon,
-    //   fillIcon: HomeIcon,
-    //   href: '/',
-    //   showItemsOnMobile: false,
-    //   items: [],
-    // },
+    {
+      label: t('Home'),
+      icon: home,
+      fillIcon: HomeIcon,
+      href: '/',
+      showItemsOnMobile: false,
+      items: [],
+    },
     {
       label: t('Trade'),
       icon: trade,

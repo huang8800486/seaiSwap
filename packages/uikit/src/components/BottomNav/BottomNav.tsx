@@ -1,13 +1,14 @@
 import React, { useState, memo } from "react";
-import BottomNavItem from "../BottomNavItem";
-import StyledBottomNav from "./styles";
+import { useRouter } from "next/router";
 import { Link } from "@pancakeswap/uikit";
 import { useOptionsShowSamllNav } from "state/options/hooks";
 import { Box } from "../Box";
+import StyledBottomNav from "./styles";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import { BottomNavProps } from "./types";
 import { NotificationDot } from "../NotificationDot";
 import { Overlay } from "../Overlay";
+import BottomNavItem from "../BottomNavItem";
 
 const BottomNav: React.FC<React.PropsWithChildren<BottomNavProps>> = ({
   items = [],
@@ -15,6 +16,7 @@ const BottomNav: React.FC<React.PropsWithChildren<BottomNavProps>> = ({
   activeSubItem = "",
   ...props
 }) => {
+  const router = useRouter();
   const [menuOpenByIndex, setMenuOpenByIndex] = useState({});
   const isBottomMenuOpen = Object.values(menuOpenByIndex).some((acc) => acc);
   const [optionsShowSamllNav, setOptionsShowSamllNav] = useOptionsShowSamllNav();
@@ -28,6 +30,7 @@ const BottomNav: React.FC<React.PropsWithChildren<BottomNavProps>> = ({
             index
           ) => {
             const statusColor = menuItems?.find((menuItem) => menuItem.status !== undefined)?.status?.color;
+            console.log("router.asPath", router.asPath);
             return (
               showOnMobile && (
                 <Link
@@ -35,7 +38,7 @@ const BottomNav: React.FC<React.PropsWithChildren<BottomNavProps>> = ({
                   onClick={() => {
                     setOptionsShowSamllNav(false);
                   }}
-                  className={activeItem === href ? 'active' : ''}
+                  className={router.asPath === href ? "active" : ""}
                 >
                   <h3>
                     <img src={icon.src} alt="" />
