@@ -2,13 +2,11 @@ import React, { useState, memo } from "react";
 import { useRouter } from "next/router";
 import { Link } from "@pancakeswap/uikit";
 import { useOptionsShowSamllNav } from "state/options/hooks";
-import { Box } from "../Box";
+import { useWeb3React } from "@pancakeswap/wagmi";
+import ConnectWalletButton from "components/ConnectWalletButton";
 import StyledBottomNav from "./styles";
-import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import { BottomNavProps } from "./types";
-import { NotificationDot } from "../NotificationDot";
 import { Overlay } from "../Overlay";
-import BottomNavItem from "../BottomNavItem";
 
 const BottomNav: React.FC<React.PropsWithChildren<BottomNavProps>> = ({
   items = [],
@@ -17,6 +15,7 @@ const BottomNav: React.FC<React.PropsWithChildren<BottomNavProps>> = ({
   ...props
 }) => {
   const router = useRouter();
+  const { account } = useWeb3React();
   const [menuOpenByIndex, setMenuOpenByIndex] = useState({});
   const isBottomMenuOpen = Object.values(menuOpenByIndex).some((acc) => acc);
   const [optionsShowSamllNav, setOptionsShowSamllNav] = useOptionsShowSamllNav();
@@ -51,6 +50,20 @@ const BottomNav: React.FC<React.PropsWithChildren<BottomNavProps>> = ({
               )
             );
           }
+        )}
+        {!account && (
+          <div className="wallet_wrap">
+            <div className="wallet_box">
+              <h3>
+                <img src="/images/icons/wallet.png" alt="" />
+              </h3>
+              <p>WEB3钱包</p>
+              <span>
+                <img src="/images/icons/arrow-right.png" alt="" />
+              </span>
+              <ConnectWalletButton mt="24px" />
+            </div>
+          </div>
         )}
       </StyledBottomNav>
     </>
