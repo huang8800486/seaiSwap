@@ -41,9 +41,9 @@ const CurrencyInputHeader: React.FC<React.PropsWithChildren<Props>> = ({
           {setIsChartDisplayed && (
             <ColoredIconButton onClick={toggleChartDisplayed} variant="text" scale="sm">
               {isChartDisplayed ? (
-                <ChartDisableIcon color="textSubtle" />
+                <ChartDisableIcon color="textSubtle2" />
               ) : (
-                <ChartIcon width="24px" color="textSubtle" />
+                <ChartIcon width="24px" color="textSubtle2" />
               )}
             </ColoredIconButton>
           )}
@@ -53,12 +53,12 @@ const CurrencyInputHeader: React.FC<React.PropsWithChildren<Props>> = ({
         </Flex>
         <Flex flex="1" justifyContent="flex-end">
           <IconButton onClick={onPresentTransactionsModal} variant="text" scale="sm">
-            <HistoryIcon color="textSubtle" width="24px" />
+            <HistoryIcon color="textSubtle2" width="24px" />
           </IconButton>
         </Flex>
       </Flex>
       <Flex alignItems="center">
-        <Text color="textSubtle" fontSize="14px">
+        <Text color="textSubtle2" fontSize="14px">
           {subtitle}
         </Text>
       </Flex>

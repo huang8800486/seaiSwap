@@ -15,8 +15,8 @@ const blink = keyframes`
   0%,  100% { transform: scaleY(1); }
   50% { transform:  scaleY(0.1); }
 `;
-
-const StyledLink = styled("a")`
+// const StyledLink = styled("a")`
+const StyledLink = styled("div")`
   display: flex;
   align-items: center;
   .mobile-icon {
@@ -50,6 +50,8 @@ const LogoImg = styled("div")`
 const MenuImg = styled("div")`
   width: 20px;
   margin-right: 9px;
+  display: flex;
+  align-items: center;
   img {
     width: 100%;
     display: block;
@@ -67,13 +69,6 @@ const Logo: React.FC<React.PropsWithChildren<Props>> = ({ isDark, href }) => {
   console.log("optionsShowSamllNav", optionsShowSamllNav);
   const innerLogo = (
     <>
-      <MenuImg
-        onClick={() => {
-          setOptionsShowSamllNav(!optionsShowSamllNav);
-        }}
-      >
-        <img src="/images/menu.png" alt="" />
-      </MenuImg>
       {/* <LogoWithTextIcon className="desktop-icon" isDark={isDark} /> */}
       <LogoImg>
         {currentLanguage.locale === "zh-CN" ? (
@@ -87,14 +82,19 @@ const Logo: React.FC<React.PropsWithChildren<Props>> = ({ isDark, href }) => {
   );
   return (
     <Flex>
+      <MenuImg
+        onClick={() => {
+          setOptionsShowSamllNav(!optionsShowSamllNav);
+        }}
+      >
+        <img src="/images/menu.png" alt="" />
+      </MenuImg>
       {isAbsoluteUrl ? (
-        <StyledLink as="a" href={href} aria-label="Pancake home page">
+        <StyledLink as="a" aria-label="Pancake home page">
           {innerLogo}
         </StyledLink>
       ) : (
-        <StyledLink href={href} as={linkComponent} aria-label="Pancake home page">
-          {innerLogo}
-        </StyledLink>
+        <StyledLink aria-label="Pancake home page">{innerLogo}</StyledLink>
       )}
     </Flex>
   );

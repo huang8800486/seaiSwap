@@ -4,7 +4,8 @@ import { useTranslation } from '@pancakeswap/localization'
 import { escapeRegExp } from '../../utils'
 
 const StyledInput = styled.input<{ error?: boolean; fontSize?: string; align?: string }>`
-  color: ${({ error, theme }) => (error ? theme.colors.failure : theme.colors.text)};
+  // color: ${({ error, theme }) => (error ? theme.colors.failure : theme.colors.text)};
+  color: ${({ error, theme }) => (error ? theme.colors.failure : '#02C4F4')};
   width: 0;
   position: relative;
   font-weight: 500;
@@ -34,7 +35,8 @@ const StyledInput = styled.input<{ error?: boolean; fontSize?: string; align?: s
   }
 
   ::placeholder {
-    color: ${({ theme }) => theme.colors.textSubtle};
+    // color: ${({ theme }) => theme.colors.textSubtle};
+    color: #fff;
   }
 `
 

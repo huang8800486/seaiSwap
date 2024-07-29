@@ -21,6 +21,7 @@ const NavItem = styled.a<{ isMobile: boolean; isCurrent: boolean }>`
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
+  color: #fff;
   &:hover {
     &:before {
       opacity: 1;

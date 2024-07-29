@@ -31,7 +31,8 @@ const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm'
     zapStyle &&
     css`
       padding: 8px;
-      background: ${theme.colors.background};
+      // background: ${theme.colors.background};
+      background: #384767;
       border: 1px solid ${theme.colors.cardBorder};
       border-radius: ${zapStyle === 'zap' ? '0px' : '8px'} 8px 0px 0px;
       height: auto;
@@ -50,12 +51,13 @@ const InputPanel = styled.div`
   display: flex;
   flex-flow: column nowrap;
   position: relative;
-  background-color: ${({ theme }) => theme.colors.backgroundAlt};
+  // background-color: ${({ theme }) => theme.colors.backgroundAlt};
   z-index: 1;
 `
 const Container = styled.div<{ zapStyle?: ZapStyle; error?: boolean }>`
   border-radius: 16px;
-  background-color: ${({ theme }) => theme.colors.input};
+  // background-color: ${({ theme }) => theme.colors.input};
+  background: #384767;
   box-shadow: ${({ theme, error }) => theme.shadows[error ? 'warning' : 'inset']};
   ${({ zapStyle }) =>
     !!zapStyle &&
@@ -158,14 +160,14 @@ export default function CurrencyInputPanel({
               {pair ? (
                 <DoubleCurrencyLogo currency0={pair.token0} currency1={pair.token1} size={16} margin />
               ) : currency ? (
-                <CurrencyLogo currency={currency} size="24px" style={{ marginRight: '8px' }} />
+                <CurrencyLogo currency={currency} size="24px" style={{ marginRight: '8px', fill: '#fff' }} />
               ) : null}
               {pair ? (
-                <Text id="pair" bold>
+                <Text id="pair" color="textSubtle2" bold>
                   {pair?.token0.symbol}:{pair?.token1.symbol}
                 </Text>
               ) : (
-                <Text id="pair" bold>
+                <Text id="pair" color="textSubtle2" bold>
                   {(currency && currency.symbol && currency.symbol.length > 20
                     ? `${currency.symbol.slice(0, 4)}...${currency.symbol.slice(
                         currency.symbol.length - 5,
@@ -174,14 +176,14 @@ export default function CurrencyInputPanel({
                     : currency?.symbol) || t('Select a currency')}
                 </Text>
               )}
-              {!disableCurrencySelect && <ChevronDownIcon />}
+              {!disableCurrencySelect && <ChevronDownIcon color="textSubtle2" />}
             </Flex>
           </CurrencySelectButton>
           {token && tokenAddress ? (
             <Flex style={{ gap: '4px' }} ml="4px" alignItems="center">
               <CopyButton
                 width="16px"
-                buttonColor="textSubtle"
+                buttonColor="#fff"
                 text={tokenAddress}
                 tooltipMessage={t('Token address copied')}
                 tooltipTop={-20}

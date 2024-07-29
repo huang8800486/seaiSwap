@@ -58,14 +58,14 @@ export default function Pool() {
   const renderBody = () => {
     if (!account) {
       return (
-        <Text color="textSubtle" textAlign="center">
+        <Text color="textSubtle2" textAlign="center">
           {t('Connect to a wallet to view your liquidity.')}
         </Text>
       )
     }
     if (v2IsLoading) {
       return (
-        <Text color="textSubtle" textAlign="center">
+        <Text color="textSubtle2" textAlign="center">
           <Dots>{t('Loading')}</Dots>
         </Text>
       )

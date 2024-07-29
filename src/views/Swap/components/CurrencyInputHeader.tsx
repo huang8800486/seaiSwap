@@ -63,31 +63,33 @@ const CurrencyInputHeader: React.FC<React.PropsWithChildren<Props>> = ({
           </ColoredIconButton>
         )} */}
         <Flex flexDirection="column" alignItems="flex-end" width="100%" mr={18}>
-          <Heading as="h2">{title}</Heading>
+          <Heading as="h2" color="textSubtle2">
+            {title}
+          </Heading>
         </Flex>
         <Flex>
           {setIsChartDisplayed && (
             <ColoredIconButton onClick={toggleChartDisplayed} variant="text" scale="sm">
               {isChartDisplayed ? (
-                <ChartDisableIcon color="textSubtle" />
+                <ChartDisableIcon color="textSubtle2" />
               ) : (
-                <ChartIcon width="24px" color="textSubtle" />
+                <ChartIcon width="24px" color="textSubtle2" />
               )}
             </ColoredIconButton>
           )}
           <NotificationDot show={expertMode}>
-            <GlobalSettings color="textSubtle" mr="0" mode={SettingsMode.SWAP_LIQUIDITY} />
+            <GlobalSettings color="textSubtle2" mr="0" mode={SettingsMode.SWAP_LIQUIDITY} />
           </NotificationDot>
           {/* <IconButton onClick={onPresentTransactionsModal} variant="text" scale="sm">
-            <HistoryIcon color="textSubtle" width="24px" />
+            <HistoryIcon color="textSubtle2" width="24px" />
           </IconButton> */}
           <IconButton variant="text" scale="sm" onClick={handleOnClick}>
-            <RefreshIcon disabled={!hasAmount} color="textSubtle" width="27px" />
+            <RefreshIcon disabled={!hasAmount} color="textSubtle2" width="27px" />
           </IconButton>
         </Flex>
       </Flex>
       <Flex alignItems="center">
-        <Text color="textSubtle" fontSize="14px">
+        <Text color="#CCCCCC" fontSize="14px">
           {subtitle}
         </Text>
       </Flex>

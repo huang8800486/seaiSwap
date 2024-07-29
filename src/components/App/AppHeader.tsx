@@ -33,18 +33,20 @@ const AppHeader: React.FC<React.PropsWithChildren<Props>> = ({ title, subtitle, 
           (typeof backTo === 'string' ? (
             <Link passHref href={backTo}>
               <IconButton as="a" scale="sm">
-                <ArrowBackIcon width="32px" />
+                <ArrowBackIcon width="32px" color="textSubtle2" />
               </IconButton>
             </Link>
           ) : (
             <IconButton scale="sm" variant="text" onClick={backTo}>
-              <ArrowBackIcon width="32px" />
+              <ArrowBackIcon width="32px" color="textSubtle2" />
             </IconButton>
           ))}
         <Flex flexDirection="column" width="100%">
           <Flex mb="8px" alignItems="center" justifyContent="space-between">
             <Flex>
-              <Heading as="h2">{title}</Heading>
+              <Heading as="h2" color="textSubtle2">
+                {title}
+              </Heading>
               {helper && <QuestionHelper text={helper} ml="4px" placement="top-start" />}
             </Flex>
             {!noConfig && (
@@ -57,7 +59,7 @@ const AppHeader: React.FC<React.PropsWithChildren<Props>> = ({ title, subtitle, 
             )}
           </Flex>
           <Flex alignItems="center">
-            <Text color="textSubtle" fontSize="14px">
+            <Text color="textSubtle2" fontSize="14px">
               {subtitle}
             </Text>
           </Flex>
