@@ -1,7 +1,7 @@
 import { useMatchBreakpoints } from '@pancakeswap/uikit'
 import styled, { css } from 'styled-components'
-import CommonBox from './CommonBox'
 import Link from 'next/link'
+import CommonBox from './CommonBox'
 
 export const getMedia = (value: string[]) => () => {
   const { isMobile, isTablet } = useMatchBreakpoints()

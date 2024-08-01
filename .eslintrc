@@ -8,7 +8,8 @@
   "extends": ["@pancakeswap/eslint-config-pancake", "plugin:react/jsx-runtime", "plugin:@next/next/recommended"],
   "rules": {
     "import/no-unresolved": 0,
-    "no-console": ["warn", { "allow": ["info", "warn", "error", "debug"] }],
+    "no-console": "off",
+    // "no-console": ["warn", { "allow": ["info", "warn", "error", "debug"] }],
     "no-plusplus": 0,
     "prefer-destructuring": ["warn", { "object": true, "array": false }],
     "no-underscore-dangle": 0,
@@ -27,6 +28,7 @@
     "@typescript-eslint/ban-ts-comment": [1, { "ts-ignore": false, "ts-nocheck": false }],
     "@typescript-eslint/no-use-before-define": 0,
     "@typescript-eslint/explicit-module-boundary-types": 0,
+    "@typescript-eslint/no-unused-vars": 0,
     "@typescript-eslint/no-explicit-any": 0,
     "radix": 0,
     "import/no-extraneous-dependencies": 0,

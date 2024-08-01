@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import { useMatchBreakpoints } from '@pancakeswap/uikit'
+
 export const getMedia = (value: string[]) => () => {
   const { isMobile, isTablet } = useMatchBreakpoints()
   return isMobile ? value[0] : isTablet ? value[1] : value[2]

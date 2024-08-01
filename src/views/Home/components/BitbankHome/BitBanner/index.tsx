@@ -5,7 +5,7 @@ import { Button, Text, useMatchBreakpoints } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import { Wrapper } from '../styleds'
 import { BannerWrapper } from './styleds'
-import CommonBox from './../CommonBox'
+import CommonBox from '../CommonBox'
 
 export default function BitBanner() {
   const { t } = useTranslation()

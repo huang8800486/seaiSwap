@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+
 export const CommonContent = styled.div`
   width: 100%;
   position: relative;
@@ -82,10 +83,10 @@ const CommonBox: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
     <>
       <CommonContent>
-        <i className="flag_box flag_box_1"></i>
-        <i className="flag_box flag_box_2"></i>
-        <i className="flag_box flag_box_3"></i>
-        <i className="flag_box flag_box_4"></i>
+        <i className="flag_box flag_box_1" />
+        <i className="flag_box flag_box_2" />
+        <i className="flag_box flag_box_3" />
+        <i className="flag_box flag_box_4" />
         {children}
       </CommonContent>
     </>

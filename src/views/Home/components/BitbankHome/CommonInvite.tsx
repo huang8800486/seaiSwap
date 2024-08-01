@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useWeb3React } from '@pancakeswap/wagmi'
 import { useTranslation } from '@pancakeswap/localization'
-import CommonItem from './CommonItem'
 import { useMatchBreakpoints, Input, Button, useToast } from '@pancakeswap/uikit'
 import { copyText } from '@pancakeswap/utils/copyText'
+import CommonItem from './CommonItem'
+
 export const getMedia = (value: string[]) => () => {
   const { isMobile, isTablet } = useMatchBreakpoints()
   return isMobile ? value[0] : isTablet ? value[1] : value[2]
@@ -53,7 +54,7 @@ const CommonInvite: React.FC<React.PropsWithChildren<Props>> = ({ isNotRecord, c
   }
   return (
     <CommonContent>
-      <CommonItem title={'邀请'} imgName={'invite_icon'} recordHref={!isNotRecord ? '/' : ''} recordText={'邀请记录'}>
+      <CommonItem title="邀请" imgName="invite_icon" recordHref={!isNotRecord ? '/' : ''} recordText="邀请记录">
         <div className="invite_content">
           <span>
             已邀请人数：<em>1</em>

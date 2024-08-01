@@ -45,7 +45,9 @@ export default function Invited() {
   //       })
   //   }
   // }, [invitedPoolContract, account])
-  const receiveClick = () => {}
+  const receiveClick = () => {
+    console.log('1')
+  }
   const [inviteList, setInviteList] = useState([
     {
       time: '2023-7-23 14:00:00',
@@ -81,9 +83,9 @@ export default function Invited() {
             </div>
             <span className="note">邀请奖励：1级返0.1%，2级返0.05%</span>
           </CommonItem>
-          <CommonInvite isNotRecord={true} />
+          <CommonInvite isNotRecord />
         </div>
-        <CommonItem title={'邀请记录'} imgName={'invite_record'}>
+        <CommonItem title="邀请记录" imgName="invite_record">
           <div className="invite_list">
             {inviteList.map((items) => (
               <div className="list">

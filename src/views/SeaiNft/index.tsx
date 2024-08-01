@@ -21,7 +21,9 @@ export default function Invited() {
   const { data: signer } = useSigner()
   const [mySuperior, setMySuperior] = useState('')
   const [myInvitedList, setMyInvitedList] = useState([])
-  const receiveClick = () => {}
+  const receiveClick = () => {
+    console.log('1')
+  }
   const [nftlist, setNftlist] = useState([
     {
       img: '...',
@@ -42,11 +44,11 @@ export default function Invited() {
   ])
   const [currentPage, setCurrentPage] = useState(1)
   const prevClick = () => {
-    if (currentPage == 1) return
+    if (currentPage === 1) return
     setCurrentPage(currentPage - 1)
   }
   const nexClick = () => {
-    if (currentPage == nftlist.length - 1) return
+    if (currentPage === nftlist.length - 1) return
     setCurrentPage(currentPage + 1)
   }
   return (
@@ -56,7 +58,7 @@ export default function Invited() {
           <div className="nft_list">
             <CommonBox>
               <div className="nft_img">
-                <img src={'/images/seai/banner.png'} alt="" />
+                <img src="/images/seai/banner.png" alt="" />
               </div>
             </CommonBox>
             <h3>{items?.name}</h3>

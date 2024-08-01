@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { Flex, Box } from '@pancakeswap/uikit'
 import { useMatchBreakpoints } from '@pancakeswap/uikit'
 
 export const getMedia = (value: string[]) => () => {

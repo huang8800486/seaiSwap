@@ -6,10 +6,10 @@ import { useTranslation } from '@pancakeswap/localization'
 import { copyText } from '@pancakeswap/utils/copyText'
 import Link from 'next/link'
 import { CommonWrapper, getMedia } from '../styleds'
-import CommonBox from './../CommonBox'
-import CommonItem from './../CommonItem'
-import CommonInvite from './../CommonInvite'
-import CopyRight from './../CopyRight'
+import CommonBox from '../CommonBox'
+import CommonItem from '../CommonItem'
+import CommonInvite from '../CommonInvite'
+import CopyRight from '../CopyRight'
 
 const IntroWraper = styled.div`
   width: 100%;
@@ -184,7 +184,7 @@ export default function IntroContent() {
             </div>
           </CommonItem> */}
           <CommonInvite />
-          <CommonItem title={'合作伙伴'} imgName={'relate_icon'}>
+          <CommonItem title="合作伙伴" imgName="relate_icon">
             <img src="/images/seai/relate_img.png" alt="" />
           </CommonItem>
         </div>
