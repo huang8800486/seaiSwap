@@ -77,7 +77,7 @@ function MyApp(props: AppProps<{ initialReduxState: any }>) {
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="🥞 Seai - A next evolution DeFi exchange on BNB Smart Chain (BSC)" />
-        <title>比特币交易所|NFT数字资产交易|seai</title>
+        <title>Seaiswap</title>
         {(Component as NextPageWithLayout).mp && (
           // eslint-disable-next-line @next/next/no-sync-scripts
           <script src="https://public.bnbstatic.com/static/js/mp-webview-sdk/webview-v1.0.0.min.js" id="mp-webview" />

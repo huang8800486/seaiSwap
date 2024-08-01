@@ -3,7 +3,7 @@ import { ContextApi } from '@pancakeswap/localization'
 import { PageMeta } from './types'
 
 export const DEFAULT_META: PageMeta = {
-  title: '比特币交易所|NFT数字资产交易|seai',
+  title: 'Seaiswap',
   description:
     'The most popular AMM on BSC by user count! Earn BTH through yield farming or win it in the Lottery, then stake it in Syrup Pools to earn more tokens! Initial Farm Offerings (new token launch model pioneered by WebxBank), NFTs, and more, on a platform you can trust.',
   image: 'https://i.ibb.co/TLKPL8K/2091679925081-pic.png',
