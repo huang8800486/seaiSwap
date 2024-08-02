@@ -40,7 +40,7 @@ export default function Invited() {
           setMyInvitedList([])
         })
       invitedPoolContract
-        .getTokenRewardList('0x47821Fe7C1Ff2654Dc27EdBcD0c4Ea46019C4F15')
+        .getTokenRewardList(account)
         .then((result) => {
           console.log('result.TokenRewardInfo', result, result.TokenRewardInfo)
           const array = []
