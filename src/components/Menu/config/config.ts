@@ -106,6 +106,7 @@ const config: (
       label: t('Stake Farming'),
       icon: pledge,
       fillIcon: SwapFillIcon,
+      disabled: true,
       href: '/pledge',
       showItemsOnMobile: true,
       items: [],

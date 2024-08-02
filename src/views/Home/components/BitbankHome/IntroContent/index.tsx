@@ -135,21 +135,19 @@ export default function IntroContent() {
             <span>项目介绍</span>
           </h2>
           <div className="text">
-            <p>
-              项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目
-            </p>
+            <p>黑洞币本位挖矿鼻祖全力打造生态子币，全新NFT卡牌暴力分红，Swap生态分红。</p>
           </div>
           <div className="swap_wrap">
             <div className="swap">
               <CommonBox>
-                <Link href="/" passHref>
+                <Link href="/swap" passHref>
                   SWAP
                 </Link>
               </CommonBox>
             </div>
             <div className="swap">
               <CommonBox>
-                <Link href="/" passHref>
+                <Link href="/liquidity" passHref>
                   流动性
                 </Link>
               </CommonBox>
@@ -157,32 +155,6 @@ export default function IntroContent() {
           </div>
         </div>
         <div className="con_wrap">
-          {/* <CommonItem title={'邀请'} imgName={'invite_icon'} recordHref={'/'} recordText={'邀请记录'}>
-            <div className="invite_content">
-              <span>
-                已邀请人数：<em>1</em>
-              </span>
-            </div>
-            <div className="input_wrap">
-              <Input
-                disabled
-                style={{
-                  borderRadius: '10px',
-                  backgroundColor: '#384767',
-                  borderColor: '#384767',
-                  color: '#FFFFFF',
-                  padding: '10px 16px',
-                }}
-                value={!account ? '' : inviteCode}
-                placeholder="请链接钱包"
-              />
-            </div>
-            <div className="button_wrap">
-              <Button as="a" scale="md" onClick={handleClick} style={{ width: '100%', borderRadius: '0' }}>
-                复制链接
-              </Button>
-            </div>
-          </CommonItem> */}
           <CommonInvite />
           <CommonItem title="合作伙伴" imgName="relate_icon">
             <img src="/images/seai/relate_img.png" alt="" />

@@ -37,13 +37,13 @@ const CopyRight: React.FC<React.PropsWithChildren> = ({ children }) => {
       <CommonContent>
         <div className="realtive_box_seai">
           <div className="relate_box">
-            <a href="https://nft.webxbank.pro/" className="rela" target="_blank" rel="noreferrer">
+            <a href="/" className="rela" target="_blank" rel="noreferrer">
               <img src="/images/icons/facebook.png" alt="" />
             </a>
-            <a href="https://nft.webxbank.pro/" className="rela" target="_blank" rel="noreferrer">
+            <a href="https://x.com/SEAI_ai66" className="rela" target="_blank" rel="noreferrer">
               <img src="/images/icons/twite.png" alt="" />
             </a>
-            <a href="https://nft.webxbank.pro/" className="rela" target="_blank" rel="noreferrer">
+            <a href="https://t.me/SEAI_ai" className="rela" target="_blank" rel="noreferrer">
               <img src="/images/icons/telegram.png" alt="" />
             </a>
           </div>

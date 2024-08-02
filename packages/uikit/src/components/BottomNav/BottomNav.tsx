@@ -1,6 +1,7 @@
 import React, { useState, memo } from "react";
 import { useRouter } from "next/router";
-import { Link } from "@pancakeswap/uikit";
+import { Link, useToast } from "@pancakeswap/uikit";
+import { useTranslation } from "@pancakeswap/localization";
 import { useOptionsShowSamllNav } from "state/options/hooks";
 import { useWeb3React } from "@pancakeswap/wagmi";
 import ConnectWalletButton from "components/ConnectWalletButton";
@@ -16,6 +17,8 @@ const BottomNav: React.FC<React.PropsWithChildren<BottomNavProps>> = ({
 }) => {
   const router = useRouter();
   const { account } = useWeb3React();
+  const { t } = useTranslation();
+  const { toastError, toastSuccess } = useToast();
   const [menuOpenByIndex, setMenuOpenByIndex] = useState({});
   const isBottomMenuOpen = Object.values(menuOpenByIndex).some((acc) => acc);
   const [optionsShowSamllNav, setOptionsShowSamllNav] = useOptionsShowSamllNav();
@@ -34,8 +37,12 @@ const BottomNav: React.FC<React.PropsWithChildren<BottomNavProps>> = ({
               showOnMobile && (
                 <Link
                   href={href}
-                  onClick={() => {
+                  onClick={(event) => {
                     setOptionsShowSamllNav(false);
+                    if (href === "/pledge") {
+                      event.preventDefault();
+                      toastError(t("Coming Soon!"));
+                    }
                   }}
                   className={router.asPath === href ? "active" : ""}
                 >

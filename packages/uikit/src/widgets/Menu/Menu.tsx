@@ -1,18 +1,16 @@
 import throttle from "lodash/throttle";
 import React, { useEffect, useRef, useState } from "react";
-import { ThemeSwitcher, Button } from "@pancakeswap/uikit";
 import { SamllNavIcon } from "@pancakeswap/uikit";
 import { useWeb3React } from "@pancakeswap/wagmi";
 import Link from "next/link";
 import styled from "styled-components";
-import BottomNav from "../../components/BottomNav";
+import { useOptionsShowSamllNav } from "state/options/hooks";
 import { Box } from "../../components/Box";
 import Flex from "../../components/Box/Flex";
 import Footer from "../../components/Footer";
 import MenuItems from "../../components/MenuItems/MenuItems";
 import { SubMenuItems } from "../../components/SubMenuItems";
-import { useOptionsShowSamllNav } from "state/options/hooks";
-import { CSSTransition } from "react-transition-group";
+import BottomNav from "../../components/BottomNav";
 import { useMatchBreakpoints } from "../../contexts";
 import CakePrice from "../../components/CakePrice/CakePrice";
 import Logo from "./components/Logo";
@@ -20,6 +18,7 @@ import { MENU_HEIGHT, MOBILE_MENU_HEIGHT, TOP_BANNER_HEIGHT, TOP_BANNER_HEIGHT_M
 import { NavProps } from "./types";
 import LangSelector from "../../components/LangSelector/LangSelector";
 import { MenuContext } from "./context";
+
 export const getMedia = (value: string[]) => () => {
   const { isMobile, isTablet } = useMatchBreakpoints();
   return isMobile ? value[0] : isTablet ? value[1] : value[2];
@@ -298,13 +297,13 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
               <BottomNav items={links} activeItem={activeItem} activeSubItem={activeSubItem} />
               <div className="realtive_box_wrap_seai">
                 <div className="relate_box">
-                  <a href="https://nft.webxbank.pro/" className="rela" target="_blank" rel="noreferrer">
+                  <a href="/" className="rela" target="_blank" rel="noreferrer">
                     <img src="/images/icons/facebook.png" alt="" />
                   </a>
-                  <a href="https://nft.webxbank.pro/" className="rela" target="_blank" rel="noreferrer">
+                  <a href="https://x.com/SEAI_ai66" className="rela" target="_blank" rel="noreferrer">
                     <img src="/images/icons/twite.png" alt="" />
                   </a>
-                  <a href="https://nft.webxbank.pro/" className="rela" target="_blank" rel="noreferrer">
+                  <a href="https://t.me/SEAI_ai" className="rela" target="_blank" rel="noreferrer">
                     <img src="/images/icons/telegram.png" alt="" />
                   </a>
                 </div>
