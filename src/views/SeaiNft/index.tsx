@@ -26,20 +26,8 @@ export default function Invited() {
   }
   const [nftlist, setNftlist] = useState([
     {
-      img: '...',
-      name: 'NFT1',
-    },
-    {
-      img: '...',
-      name: 'NFT2',
-    },
-    {
-      img: '...',
-      name: 'NFT3',
-    },
-    {
-      img: '...',
-      name: 'NFT4',
+      amount: '0',
+      time: '2024-8-02',
     },
   ])
   const [currentPage, setCurrentPage] = useState(1)
@@ -53,7 +41,22 @@ export default function Invited() {
   }
   return (
     <BodyWrap>
-      <div className="nft_list_wrap">
+      <CommonItem title="NFT分红" imgName="invite_record">
+        <div className="invite_list_nft">
+          <div className="list">
+            <span>金额</span>
+            <span>时间</span>
+          </div>{' '}
+          {nftlist.map((items) => (
+            <div className="list">
+              {/* <span>{items}</span> */}
+              <span>{items?.amount}</span>
+              <span>{items?.time}</span>
+            </div>
+          ))}
+        </div>
+      </CommonItem>
+      {/* <div className="nft_list_wrap">
         {nftlist.map((items) => (
           <div className="nft_list">
             <CommonBox>
@@ -71,7 +74,7 @@ export default function Invited() {
           <span>{currentPage}</span>
           <Button onClick={nexClick}>+</Button>
         </div>
-      </div>
+      </div> */}
     </BodyWrap>
   )
 }

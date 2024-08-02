@@ -33,7 +33,7 @@ export const CommonContent = styled.div`
       color: #cccccc;
       font-size: ${getMedia(['13px', '14px', '15px'])};
       display: flex;
-      justify-centent: center;
+      justify-content: center;
       span {
         margin-right: 6px;
       }

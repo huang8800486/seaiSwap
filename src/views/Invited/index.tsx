@@ -67,20 +67,6 @@ export default function Invited() {
   const receiveClick = () => {
     console.log('1')
   }
-  const [inviteList, setInviteList] = useState([
-    {
-      time: '2023-7-23 14:00:00',
-      address: '0x3wec...6731',
-    },
-    {
-      time: '2023-7-23 14:00:00',
-      address: '0x3wec...6731',
-    },
-    {
-      time: '2023-7-23 14:00:00',
-      address: '0x3wec...6731',
-    },
-  ])
   return (
     <BodyWrap>
       <InviterdWrap>

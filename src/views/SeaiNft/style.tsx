@@ -74,4 +74,24 @@ export const BodyWrap = styled.div`
       }
     }
   }
+  .invite_list_nft {
+    width: 100%;
+    position: relative;
+    min-height: 70px;
+    max-height: 230px;
+    overflow-y: auto;
+    .list {
+      width: 100%;
+      padding: ${getMedia(['6px 0', '8px 0', '10px 0'])};
+      overflow: hidden;
+      span {
+        float: left;
+        width: 50%;
+        font-size: ${getMedia(['14px', '16px', '18px'])};
+        &:last-child {
+          text-align: right;
+        }
+      }
+    }
+  }
 `

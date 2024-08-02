@@ -50,7 +50,7 @@ export const InviterdWrap = styled.div`
   .con_wrap {
     width: 100%;
     overflow: hidden;
-    > div {
+    /* > div {
       width: ${getMedia(['100%', '48%', '48%'])};
       &:nth-of-type(1) {
         float: ${getMedia(['none', 'left', 'left'])};
@@ -58,7 +58,7 @@ export const InviterdWrap = styled.div`
       &:nth-of-type(2) {
         float: ${getMedia(['none', 'right', 'right'])};
       }
-    }
+    } */
   }
   .invite_list {
     width: 100%;
