@@ -23,7 +23,7 @@ export enum Rounding {
   ROUND_UP,
 }
 
-export const FACTORY_ADDRESS = '0xb06C85a6540A182fe98AaEA508927960EbED4abe'
+export const FACTORY_ADDRESS = '0xEd0b9f72a201F62e1Fa7DE8708CFdd5Ad1e74693'
 
 // // TODO: ETH This is test version, do not depends on it
 const FACTORY_ADDRESS_ETH = '0xD93801d7D3a368D94A3A32E97A20f7aC1948a5dB'
@@ -35,7 +35,7 @@ export const FACTORY_ADDRESS_MAP: Record<number, string> = {
   [ChainId.BSC]: FACTORY_ADDRESS,
   [ChainId.BSC_TESTNET]: '0xeb90793c929EE10f266340ef9A0d011Fb94213eC',
 }
-export const INIT_CODE_HASH = '0x6d34d4a1ac386032b40eddcbe08297b113bb13c1c67b447087b5eaa3ea8c392e'
+export const INIT_CODE_HASH = '0x34a2eaca0123155e3fb164009140130f5a7dbedd508ddbb86f80ee51628bc7b3'
 
 const INIT_CODE_HASH_ETH = '0x57224589c67f3f30a6b0d7a1b54cf3153ab84563bc609ef41dfb34f8b2974d2d'
 export const INIT_CODE_HASH_MAP: Record<number, string> = {
