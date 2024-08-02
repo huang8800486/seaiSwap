@@ -173,7 +173,7 @@ export default function RemoveLiquidity({ currencyA, currencyB, currencyIdA, cur
       { name: 'verifyingContract', type: 'address' },
     ]
     const domain = {
-      name: 'WebxBank LPs',
+      name: 'SeaiSwap LPs',
       version: '1',
       chainId,
       verifyingContract: pair.liquidityToken.address,
