@@ -225,7 +225,7 @@ export default function SwapCommitButton({
   if (noRoute && userHasSpecifiedInputOutput) {
     return (
       <GreyCard style={{ textAlign: 'center', padding: '0.75rem' }}>
-        <Text color="textSubtle">{t('Insufficient liquidity for this trade.')}</Text>
+        <Text color="disabled">{t('Insufficient liquidity for this trade.')}</Text>
         {singleHopOnly && <Text color="textSubtle">{t('Try enabling multi-hop trades.')}</Text>}
       </GreyCard>
     )

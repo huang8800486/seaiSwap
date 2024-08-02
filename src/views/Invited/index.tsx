@@ -13,7 +13,7 @@ import seaiInvited from 'config/abi/seaiInvited.json'
 import { BodyWrap, InviterdWrap } from './style'
 import CommonInvite from '../Home/components/BitbankHome/CommonInvite'
 import CommonItem from '../Home/components/BitbankHome/CommonItem'
-import { formatTime } from './formatTime'
+import { formatTime, formatNumMin } from './formatTime'
 
 export default function Invited() {
   const { t } = useTranslation()
@@ -49,9 +49,10 @@ export default function Invited() {
             const address = result[i].from
               ? `${result[i].from.substring(0, 2)}...${result[i].from.substring(result[i].from.length - 4)}`
               : ''
+            const forma = formatUnits(result[i].amount.toString(), result[i].tokenDecimals.toString()).toString()
             array.push({
               addres: address,
-              amount: formatUnits(result[i].amount.toString(), result[i].tokenDecimals.toString()).toString(),
+              amount: formatNumMin(forma),
               tokenName: result[i].tokenName.toString(),
               time: formatTime(result[i].time.toString() * 1000, 'yyyy-MM-dd'),
             })

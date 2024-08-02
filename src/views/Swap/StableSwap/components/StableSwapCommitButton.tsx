@@ -174,7 +174,7 @@ export default function StableSwapCommitButton({
   if (isSufficentLiquidity) {
     return (
       <GreyCard style={{ textAlign: 'center', padding: '0.75rem' }}>
-        <Text color="textSubtle">{t('Insufficient liquidity for this trade.')}</Text>
+        <Text color="disabled">{t('Insufficient liquidity for this trade.')}</Text>
       </GreyCard>
     )
   }

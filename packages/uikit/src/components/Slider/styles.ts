@@ -24,7 +24,7 @@ const bunnyButt = `"data:image/svg+xml,%3Csvg width='15' height='32' viewBox='0 
 
 const getBaseThumbStyles = ({ isMax, disabled }: StyledInputProps) => `
   -webkit-appearance: none;
-  background-image: url(${isMax ? bunnyHeadMax : bunnyHeadMain});
+  // background-image: url(${isMax ? bunnyHeadMax : bunnyHeadMain});
   background-color: transparent;
   box-shadow: none;
   border: 0;
@@ -56,7 +56,7 @@ export const SliderLabel = styled(Text)<SliderLabelProps>`
 `;
 
 export const BunnyButt = styled.div<DisabledProp>`
-  background: url(${bunnyButt}) no-repeat;
+  /* background: url(${bunnyButt}) no-repeat; */
   height: 32px;
   filter: ${({ disabled }) => (disabled ? "grayscale(100%)" : "none")};
   position: absolute;
@@ -95,7 +95,7 @@ export const BarBackground = styled.div<DisabledProp>`
 export const BarProgress = styled.div<DisabledProp>`
   background-color: ${({ theme }) => theme.colors.primary};
   filter: ${({ disabled }) => (disabled ? "grayscale(100%)" : "none")};
-  height: 10px;
+  height: 2px;
   position: absolute;
   top: 18px;
 `;
