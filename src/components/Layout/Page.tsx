@@ -53,7 +53,7 @@ export const PageMeta: React.FC<React.PropsWithChildren<{ symbol?: string }>> = 
   const { title, description, image } = { ...DEFAULT_META, ...pageMeta }
   // let pageTitle = cakePriceUsdDisplay ? [title, cakePriceUsdDisplay].join(' - ') : title
   let pageTitle = 'Seaiswap'
-  console.log('pageTitle', [title, cakePriceUsdDisplay].join(' - '))
+  // console.log('pageTitle', [title, cakePriceUsdDisplay].join(' - '))
   if (symbol) {
     pageTitle = [symbol, title].join(' - ')
   }

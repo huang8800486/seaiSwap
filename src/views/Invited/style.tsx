@@ -64,6 +64,8 @@ export const InviterdWrap = styled.div`
     width: 100%;
     position: relative;
     min-height: 70px;
+    max-height: 230px;
+    overflow-y: auto;
     .list {
       width: 100%;
       display: flex;
@@ -71,8 +73,35 @@ export const InviterdWrap = styled.div`
       padding: ${getMedia(['6px 0', '8px 0', '10px 0'])};
       span {
         font-size: ${getMedia(['14px', '16px', '18px'])};
-        &:first-child {
+        /* &:first-child {
           color: #979797;
+        } */
+      }
+    }
+  }
+
+  .invite_listaward {
+    width: 100%;
+    position: relative;
+    min-height: 70px;
+    max-height: 230px;
+    overflow-y: auto;
+    .list {
+      width: 100%;
+      padding: ${getMedia(['6px 0', '8px 0', '10px 0'])};
+      overflow: hidden;
+      span {
+        float: left;
+        width: 25%;
+        font-size: ${getMedia(['12px', '14px', '16px'])};
+        &:last-child {
+          text-align: right;
+        }
+        &:nth-of-type(1) {
+          width: 20%;
+        }
+        &:nth-of-type(2) {
+          width: 30%;
         }
       }
     }

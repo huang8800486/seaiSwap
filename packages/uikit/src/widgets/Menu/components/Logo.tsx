@@ -66,7 +66,6 @@ const Logo: React.FC<React.PropsWithChildren<Props>> = ({ isDark, href }) => {
   const isAbsoluteUrl = href.startsWith("http");
   const { currentLanguage } = useTranslation();
   const [optionsShowSamllNav, setOptionsShowSamllNav] = useOptionsShowSamllNav();
-  console.log("optionsShowSamllNav", optionsShowSamllNav);
   const innerLogo = (
     <>
       {/* <LogoWithTextIcon className="desktop-icon" isDark={isDark} /> */}

@@ -1,7 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useMemo, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useWeb3React } from '@pancakeswap/wagmi'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useTranslation } from '@pancakeswap/localization'
+import { useSigner } from 'wagmi'
+import { INVITED_ADDRESS } from '@pancakeswap/sdk'
+import { getContract } from 'utils/contractHelpers'
+import seaiInvited from 'config/abi/seaiInvited.json'
 import { useMatchBreakpoints, Input, Button, useToast } from '@pancakeswap/uikit'
 import { copyText } from '@pancakeswap/utils/copyText'
 import CommonItem from './CommonItem'
@@ -41,8 +46,33 @@ interface Props {
 }
 const CommonInvite: React.FC<React.PropsWithChildren<Props>> = ({ isNotRecord, children }) => {
   const { t } = useTranslation()
+  const { chainId } = useActiveWeb3React()
+  const { isMobile } = useMatchBreakpoints()
   const { account } = useWeb3React()
+  const { data: signer } = useSigner()
+  const [mySuperior, setMySuperior] = useState('')
   const [inviteCode, setInviteCode] = useState('')
+  const [inviteNumber, setInviteNumber] = useState(0)
+  const invitedAddres = INVITED_ADDRESS[chainId] || INVITED_ADDRESS[-1]
+  // console.log('invitedAddres', chainId, invitedAddres)
+  const invitedPoolContract = useMemo(() => {
+    return getContract({ abi: seaiInvited, address: invitedAddres, signer })
+  }, [signer, chainId])
+  useEffect(() => {
+    if (invitedPoolContract && account) {
+      invitedPoolContract
+        .teamInfo(account)
+        .then((result) => {
+          const value = result.validAgentSubordinate.toString()
+          setInviteNumber(value)
+        })
+        .catch((err) => {
+          console.log('teamInfo', err)
+          setInviteNumber(0)
+        })
+      // console.log('invitedPoolContract', invitedPoolContract)
+    }
+  }, [invitedPoolContract, account])
   useEffect(() => {
     setInviteCode(`${window.location.protocol}//${window.location.host}?inviteCode=${account}`)
   }, [account])
@@ -54,10 +84,10 @@ const CommonInvite: React.FC<React.PropsWithChildren<Props>> = ({ isNotRecord, c
   }
   return (
     <CommonContent>
-      <CommonItem title="邀请" imgName="invite_icon" recordHref={!isNotRecord ? '/' : ''} recordText="邀请记录">
+      <CommonItem title="邀请" imgName="invite_icon" recordHref={!isNotRecord ? '/invited' : ''} recordText="邀请记录">
         <div className="invite_content">
           <span>
-            已邀请人数：<em>1</em>
+            已邀请人数：<em>{inviteNumber}</em>
           </span>
         </div>
         <div className="input_wrap">

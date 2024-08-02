@@ -155,3 +155,10 @@ export const NATIVE: Record<
     decimals: 18,
   },
 }
+
+// 邀请地址合约
+export const INVITED_ADDRESS: Record<number, string> = {
+  [-1]: '0x58b136d4c333c988B1BD1E3313F1Ede96C3Cb731',
+  [ChainId.BSC]: '0x58b136d4c333c988B1BD1E3313F1Ede96C3Cb731',
+  [ChainId.BSC_TESTNET]: '0x58b136d4c333c988B1BD1E3313F1Ede96C3Cb731',
+}

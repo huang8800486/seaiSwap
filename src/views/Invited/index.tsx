@@ -3,15 +3,17 @@ import { Flex, Text, Box, useMatchBreakpoints, Input, Button } from '@pancakeswa
 import { useWeb3LibraryContext, useWeb3React } from '@pancakeswap/wagmi'
 import { Contract } from '@ethersproject/contracts'
 import { Web3Provider } from '@ethersproject/providers'
+import { formatUnits } from '@ethersproject/units'
 import { useTranslation } from '@pancakeswap/localization'
 import { getContract } from 'utils/contractHelpers'
 import { useSigner } from 'wagmi'
-import { ROUTER_ADDRESS } from 'config/constants/exchange'
+import { INVITED_ADDRESS } from '@pancakeswap/sdk'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import IPancakeRouter02 from 'config/abi/IPancakeRouter02.json'
+import seaiInvited from 'config/abi/seaiInvited.json'
 import { BodyWrap, InviterdWrap } from './style'
 import CommonInvite from '../Home/components/BitbankHome/CommonInvite'
 import CommonItem from '../Home/components/BitbankHome/CommonItem'
+import { formatTime } from './formatTime'
 
 export default function Invited() {
   const { t } = useTranslation()
@@ -21,30 +23,47 @@ export default function Invited() {
   const { data: signer } = useSigner()
   const [mySuperior, setMySuperior] = useState('')
   const [myInvitedList, setMyInvitedList] = useState([])
-  // const invitedPoolContract = useMemo(() => {
-  //   return getContract({ abi: IPancakeRouter02, address: ROUTER_ADDRESS[chainId], signer })
-  // }, [signer, chainId])
-  // useEffect(() => {
-  //   if (invitedPoolContract) {
-  //     invitedPoolContract
-  //       .playerInfo(account)
-  //       .then((result) => {
-  //         setMySuperior(result.referrer)
-  //       })
-  //       .catch((err) => {
-  //         console.log('playerInfo', err)
-  //       })
-  //     invitedPoolContract
-  //       .getDirectRecommendAddressList(account)
-  //       .then((result) => {
-  //         console.log('getDirectRecommendAddressList', result)
-  //         setMyInvitedList(result)
-  //       })
-  //       .catch((err) => {
-  //         console.log('getDirectRecommendAddressList', err)
-  //       })
-  //   }
-  // }, [invitedPoolContract, account])
+  const [awardList, setAwardList] = useState([])
+  const invitedAddres = INVITED_ADDRESS[chainId] || INVITED_ADDRESS[-1]
+  // console.log('invitedAddres', chainId, invitedAddres)
+  const invitedPoolContract = useMemo(() => {
+    return getContract({ abi: seaiInvited, address: invitedAddres, signer })
+  }, [signer, chainId])
+  useEffect(() => {
+    if (invitedPoolContract && account) {
+      invitedPoolContract
+        .getAgentSubordinateAddress(account)
+        .then((result) => {
+          setMyInvitedList(result)
+        })
+        .catch((err) => {
+          setMyInvitedList([])
+        })
+      invitedPoolContract
+        .getTokenRewardList('0x47821Fe7C1Ff2654Dc27EdBcD0c4Ea46019C4F15')
+        .then((result) => {
+          console.log('result.TokenRewardInfo', result, result.TokenRewardInfo)
+          const array = []
+          for (let i = 0; i < result.length - 1; i++) {
+            const address = result[i].from
+              ? `${result[i].from.substring(0, 2)}...${result[i].from.substring(result[i].from.length - 4)}`
+              : ''
+            array.push({
+              addres: address,
+              amount: formatUnits(result[i].amount.toString(), result[i].tokenDecimals.toString()).toString(),
+              tokenName: result[i].tokenName.toString(),
+              time: formatTime(result[i].time.toString() * 1000, 'yyyy-MM-dd'),
+            })
+          }
+          console.log('array', array)
+          setAwardList(array)
+        })
+        .catch((err) => {
+          setAwardList([])
+        })
+      // console.log('invitedPoolContract', invitedPoolContract)
+    }
+  }, [invitedPoolContract, account])
   const receiveClick = () => {
     console.log('1')
   }
@@ -66,7 +85,7 @@ export default function Invited() {
     <BodyWrap>
       <InviterdWrap>
         <div className="con_wrap">
-          <CommonItem>
+          {/* <CommonItem>
             <div className="invite_content">
               <span>可领取交易邀请数量奖励</span>
             </div>
@@ -82,15 +101,33 @@ export default function Invited() {
               </Button>
             </div>
             <span className="note">邀请奖励：1级返0.1%，2级返0.05%</span>
-          </CommonItem>
+          </CommonItem> */}
           <CommonInvite isNotRecord />
         </div>
         <CommonItem title="邀请记录" imgName="invite_record">
           <div className="invite_list">
-            {inviteList.map((items) => (
+            {myInvitedList.map((items) => (
               <div className="list">
+                <span>{items ? `${items.substring(0, 10)}...${items.substring(items.length - 10)}` : ''}</span>
+              </div>
+            ))}
+          </div>
+        </CommonItem>
+        <CommonItem title="奖励记录" imgName="invite_record">
+          <div className="invite_listaward">
+            <div className="list">
+              <span>用户</span>
+              <span>金额</span>
+              <span>用户符号</span>
+              <span>时间</span>
+            </div>{' '}
+            {awardList.map((items) => (
+              <div className="list">
+                {/* <span>{items}</span> */}
+                <span>{items?.addres}</span>
+                <span>{items?.amount}</span>
+                <span>{items?.tokenName}</span>
                 <span>{items?.time}</span>
-                <span>{items?.address}</span>
               </div>
             ))}
           </div>
