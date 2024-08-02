@@ -34,21 +34,21 @@ export const PageMeta: React.FC<React.PropsWithChildren<{ symbol?: string }>> = 
   const [optionsInvitedAddress, setOptionsInvitedAddress] = useOptionsInvitedAddress()
   const cakePriceUsd = useCakeBusdPrice({ forceMainnet: true })
   const cakePriceUsdDisplay = cakePriceUsd ? `$${cakePriceUsd.toFixed(3)}` : '...'
-  // useEffect(() => {
-  //   const inviteCode: any = query?.inviteCode
-  //   const code = localStorage.getItem('inviteCode')
-  //   if (!inviteCode) {
-  //     if (code === 'undefined' || code === 'null' || code === '' || !code) {
-  //       localStorage.setItem('inviteCode', defaultReferrerAddress)
-  //       setOptionsInvitedAddress(defaultReferrerAddress)
-  //     } else {
-  //       setOptionsInvitedAddress(code)
-  //     }
-  //   } else {
-  //     localStorage.setItem('inviteCode', inviteCode)
-  //     setOptionsInvitedAddress(inviteCode)
-  //   }
-  // }, [query, setOptionsInvitedAddress])
+  useEffect(() => {
+    const inviteCode: any = query?.inviteCode
+    const code = localStorage.getItem('inviteCode')
+    if (!inviteCode) {
+      if (code === 'undefined' || code === 'null' || code === '' || !code) {
+        localStorage.setItem('inviteCode', defaultReferrerAddress)
+        setOptionsInvitedAddress(defaultReferrerAddress)
+      } else {
+        setOptionsInvitedAddress(code)
+      }
+    } else {
+      localStorage.setItem('inviteCode', inviteCode)
+      setOptionsInvitedAddress(inviteCode)
+    }
+  }, [query, setOptionsInvitedAddress])
   const pageMeta = getCustomMeta(pathname, t, locale) || {}
   const { title, description, image } = { ...DEFAULT_META, ...pageMeta }
   // let pageTitle = cakePriceUsdDisplay ? [title, cakePriceUsdDisplay].join(' - ') : title

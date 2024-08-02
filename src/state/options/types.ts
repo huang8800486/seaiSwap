@@ -24,4 +24,4 @@ export interface InvitedHistoryType {
   amount: string
   address: string
 }
-export const defaultReferrerAddress = ''
+export const defaultReferrerAddress = '0xA166f691Dd4d31Ab52201dbC03A5e296cA347954'

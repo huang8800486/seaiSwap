@@ -20,7 +20,7 @@ import { useEffect, useState } from 'react'
 import { useProfile } from 'state/profile/hooks'
 import { usePendingTransactions } from 'state/transactions/hooks'
 import { useAccount } from 'wagmi'
-import ProfileUserMenuItem from './ProfileUserMenuItem'
+// import ProfileUserMenuItem from './ProfileUserMenuItem'
 import WalletModal, { WalletView } from './WalletModal'
 import WalletUserMenuItem from './WalletUserMenuItem'
 
@@ -65,17 +65,17 @@ const UserMenu = () => {
           {t('Recent Transactions')}
           {hasPendingTransactions && <RefreshIcon spin />}
         </UserMenuItem>
-        <UserMenuDivider />
-        <NextLink href={`/profile/${account?.toLowerCase()}`} passHref>
+        {/* <UserMenuDivider /> */}
+        {/* <NextLink href={`/profile/${account?.toLowerCase()}`} passHref>
           <UserMenuItem as="a" disabled={isWrongNetwork || chainId !== ChainId.BSC}>
             {t('Your NFTs')}
           </UserMenuItem>
-        </NextLink>
-        <ProfileUserMenuItem
+        </NextLink> */}
+        {/* <ProfileUserMenuItem
           isLoading={isLoading}
           hasProfile={hasProfile}
           disabled={isWrongNetwork || chainId !== ChainId.BSC}
-        />
+        /> */}
         <UserMenuDivider />
         <UserMenuItem as="button" onClick={logout}>
           <Flex alignItems="center" justifyContent="space-between" width="100%">
