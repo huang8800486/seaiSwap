@@ -74,7 +74,7 @@ const MenuItem: React.FC<React.PropsWithChildren<FooterProps>> = ({
     //             <img src="/images/icons/telegram.png" alt="" />
     //           </Link>
     //         </div>
-    //         <span>SEAI TOKEN @2024</span>
+    //         <span>SKAI TOKEN @2024</span>
     //         <p>Based on Binance Smart Chain</p>
     //       </div>
     //     </StyledFootContent>

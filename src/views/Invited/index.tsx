@@ -104,7 +104,7 @@ export default function Invited() {
         <CommonItem title="奖励记录" imgName="invite_record">
           <div className="invite_listaward">
             <div className="list">
-              <span>用户</span>
+              <span>来自</span>
               <span>金额</span>
               <span>代币符号</span>
               <span>时间</span>

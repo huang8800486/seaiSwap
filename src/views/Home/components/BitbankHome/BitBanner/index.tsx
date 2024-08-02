@@ -20,7 +20,7 @@ export default function BitBanner() {
                 <img src="/images/seai/banner.png" alt="" />
               </div>
               <div className="banner_text">
-                <h2>SEAI</h2>
+                <h2>SKAI</h2>
                 <span>The game is changing, wealth is rising! </span>
                 <Link href="/" passHref className="joinus">
                   JOIN US

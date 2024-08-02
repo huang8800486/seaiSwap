@@ -1,4 +1,4 @@
-import { EN } from './config/languages'
+import { ZHCN } from './config/languages'
 
 const publicUrl = process.env.PUBLIC_URL || ''
 
@@ -19,8 +19,8 @@ export const getLanguageCodeFromLS = () => {
   try {
     const codeFromStorage = localStorage.getItem(LS_KEY)
 
-    return codeFromStorage || EN.locale
+    return codeFromStorage || ZHCN.locale
   } catch {
-    return EN.locale
+    return ZHCN.locale
   }
 }

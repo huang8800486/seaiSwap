@@ -307,7 +307,7 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
                     <img src="/images/icons/telegram.png" alt="" />
                   </a>
                 </div>
-                <span>SEAI TOKEN @2024</span>
+                <span>SKAI TOKEN @2024</span>
                 <p>Based on Binance Smart Chain</p>
               </div>
             </SubNavContent>
