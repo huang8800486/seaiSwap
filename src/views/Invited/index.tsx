@@ -37,7 +37,8 @@ export default function Invited() {
           setMyInvitedList(result)
         })
         .catch((err) => {
-          setMyInvitedList([])
+          console.log('getAgentSubordinateAddress')
+          // setMyInvitedList([])
         })
       invitedPoolContract
         .getTokenRewardList(account)
@@ -59,7 +60,8 @@ export default function Invited() {
           setAwardList(array)
         })
         .catch((err) => {
-          setAwardList([])
+          // setAwardList([])
+          console.log('getTokenRewardList')
         })
       // console.log('invitedPoolContract', invitedPoolContract)
     }
@@ -104,7 +106,7 @@ export default function Invited() {
             <div className="list">
               <span>用户</span>
               <span>金额</span>
-              <span>用户符号</span>
+              <span>代币符号</span>
               <span>时间</span>
             </div>{' '}
             {awardList.map((items) => (

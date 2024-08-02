@@ -73,6 +73,8 @@ export const InviterdWrap = styled.div`
       padding: ${getMedia(['6px 0', '8px 0', '10px 0'])};
       span {
         font-size: ${getMedia(['14px', '16px', '18px'])};
+        text-align: center;
+        width: 100%;
         /* &:first-child {
           color: #979797;
         } */
@@ -94,6 +96,7 @@ export const InviterdWrap = styled.div`
         float: left;
         width: 25%;
         font-size: ${getMedia(['12px', '14px', '16px'])};
+        text-align: center;
         &:last-child {
           text-align: right;
         }
