@@ -3056,7 +3056,7 @@ const finishedPools = [
     earningToken: bscTokens.bscx,
     contractAddress: {
       97: '',
-      56: '0x406A8dB6445e5D1656faaAb906D502833530B8B1',
+      56: '0x2C5C2DE0549d63645159c2133A094C57746D7fB7',
     },
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '0.17361',
