@@ -28,7 +28,7 @@ export default function Invited() {
   // console.log('invitedAddres', chainId, invitedAddres)
   const invitedPoolContract = useMemo(() => {
     return getContract({ abi: seaiInvited, address: invitedAddres, signer })
-  }, [signer, chainId])
+  }, [signer, chainId, invitedAddres])
   useEffect(() => {
     if (invitedPoolContract && account) {
       invitedPoolContract
@@ -74,7 +74,7 @@ export default function Invited() {
     <BodyWrap>
       <InviterdWrap>
         <div className="con_wrap">
-          {/* <CommonItem>
+          <CommonItem>
             <div className="invite_content">
               <span>可领取交易邀请数量奖励</span>
             </div>
@@ -90,7 +90,7 @@ export default function Invited() {
               </Button>
             </div>
             <span className="note">邀请奖励：1级返0.1%，2级返0.05%</span>
-          </CommonItem> */}
+          </CommonItem>
           <CommonInvite isNotRecord />
         </div>
         <CommonItem title="邀请记录" imgName="invite_record">

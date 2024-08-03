@@ -18,7 +18,8 @@ export const BodyWrap = styled.div`
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    min-height: ${getMedia(['500px', '500px', '400px'])};
+    max-height: ${getMedia(['500px', '500px', '400px'])};
+    overflow-y: auto;
     .nft_list {
       width: ${getMedia(['50%', '50%', '25%'])};
       position: relative;
@@ -93,5 +94,29 @@ export const BodyWrap = styled.div`
         }
       }
     }
+  }
+  .receive_content {
+    width: 100%;
+    position: relative;
+    padding: 29px 0 33px;
+    text-align: center;
+    .receive_text {
+      color: #f8bc42;
+      i {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 21px;
+      }
+      em {
+        font-style: normal;
+        font-size: 13px;
+        margin-left: 4px;
+      }
+    }
+  }
+  .button_wrap {
+    width: 100%;
+    padding: 0 20%;
+    text-align: center;
   }
 `

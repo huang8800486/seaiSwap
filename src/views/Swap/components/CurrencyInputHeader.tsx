@@ -63,12 +63,12 @@ const CurrencyInputHeader: React.FC<React.PropsWithChildren<Props>> = ({
           </ColoredIconButton>
         )} */}
         <Flex flexDirection="column" alignItems="flex-end" width="100%" mr={18}>
-          <Heading as="h2" color="textSubtle2">
+          <Heading as="h2" color="textSubtle2" marginRight="32px">
             {title}
           </Heading>
         </Flex>
         <Flex>
-          {setIsChartDisplayed && (
+          {/* {setIsChartDisplayed && (
             <ColoredIconButton onClick={toggleChartDisplayed} variant="text" scale="sm">
               {isChartDisplayed ? (
                 <ChartDisableIcon color="textSubtle2" />
@@ -76,7 +76,7 @@ const CurrencyInputHeader: React.FC<React.PropsWithChildren<Props>> = ({
                 <ChartIcon width="24px" color="textSubtle2" />
               )}
             </ColoredIconButton>
-          )}
+          )} */}
           <NotificationDot show={expertMode}>
             <GlobalSettings color="textSubtle2" mr="0" mode={SettingsMode.SWAP_LIQUIDITY} />
           </NotificationDot>

@@ -27,15 +27,15 @@ export const lightColors = {
   ...additionalColors,
   secondary: '#979797',
   secondary80: '#97979780',
-  background: '#384767',
+  background: '#384767', // 背景色
   backgroundDisabled: '#E9EAEB',
-  backgroundAlt: '#384767',
+  backgroundAlt: '#384767', // 背景色
   backgroundAlt2: 'rgba(255, 255, 255, 0.7)',
   bitbackground: '#020B15',
   cardBorder: '#384767',
   contrast: '#191326',
-  dropdown: '#384767',
-  dropdownDeep: '#384767',
+  dropdown: '#384767', // 背景色
+  dropdownDeep: '#384767', // 背景色
   invertedContrast: '#384767',
   input: '#384767',
   inputSecondary: '#d7caec',

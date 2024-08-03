@@ -66,7 +66,7 @@ const config: (
       label: t('Home'),
       icon: home,
       fillIcon: HomeIcon,
-      href: '/',
+      href: '/home',
       showItemsOnMobile: false,
       items: [],
     },

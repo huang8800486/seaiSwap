@@ -32,11 +32,12 @@ const BottomNav: React.FC<React.PropsWithChildren<BottomNavProps>> = ({
             index
           ) => {
             const statusColor = menuItems?.find((menuItem) => menuItem.status !== undefined)?.status?.color;
-            console.log("router.asPath", router.asPath);
+            // console.log("router.asPath", router.asPath);
             return (
               showOnMobile && (
                 <Link
                   href={href}
+                  key={label}
                   onClick={(event) => {
                     setOptionsShowSamllNav(false);
                     if (href === "/pledge") {
