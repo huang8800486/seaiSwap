@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import { useTranslation } from '@pancakeswap/localization'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useOptionsInvitedAddress } from 'state/options/hooks'
+import useWeb3Provider from 'hooks/useActiveWeb3React'
+import { useOptionsInvitedAddress, useOptionsCurrentBlockNumber } from 'state/options/hooks'
 import { defaultReferrerAddress } from 'state/options/types'
 import { DEFAULT_META, getCustomMeta } from 'config/constants/meta'
 import { useCakeBusdPrice } from 'hooks/useBUSDPrice'
@@ -30,8 +31,10 @@ export const PageMeta: React.FC<React.PropsWithChildren<{ symbol?: string }>> = 
     t,
     currentLanguage: { locale },
   } = useTranslation()
+  const { provider } = useWeb3Provider()
   const { pathname, query } = useRouter()
   const [optionsInvitedAddress, setOptionsInvitedAddress] = useOptionsInvitedAddress()
+  const [optionsCurrentBlockNumber, setOptionsCurrentBlockNumber] = useOptionsCurrentBlockNumber()
   const cakePriceUsd = useCakeBusdPrice({ forceMainnet: true })
   const cakePriceUsdDisplay = cakePriceUsd ? `$${cakePriceUsd.toFixed(3)}` : '...'
   useEffect(() => {
@@ -49,6 +52,13 @@ export const PageMeta: React.FC<React.PropsWithChildren<{ symbol?: string }>> = 
       setOptionsInvitedAddress(inviteCode)
     }
   }, [query, setOptionsInvitedAddress])
+  const fetchBlockNumber = async () => {
+    const number = await provider.getBlockNumber()
+    setOptionsCurrentBlockNumber(number)
+  }
+  useEffect(() => {
+    fetchBlockNumber()
+  }, [provider])
   const pageMeta = getCustomMeta(pathname, t, locale) || {}
   const { title, description, image } = { ...DEFAULT_META, ...pageMeta }
   // let pageTitle = cakePriceUsdDisplay ? [title, cakePriceUsdDisplay].join(' - ') : title

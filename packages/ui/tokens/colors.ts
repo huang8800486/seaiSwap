@@ -38,6 +38,7 @@ export const lightColors = {
   dropdownDeep: '#384767', // 背景色
   invertedContrast: '#384767',
   input: '#384767',
+  Checkbox: '#ffffff',
   inputSecondary: '#d7caec',
   tertiary: '#EFF4F5',
   text: '#fff',
@@ -75,6 +76,7 @@ export const darkColors = {
   dropdownDeep: '#384767',
   invertedContrast: '#384767',
   input: '#384767',
+  Checkbox: '#ffffff',
   inputSecondary: '#262130',
   primaryDark: '#0098A1',
   tertiary: '#353547',

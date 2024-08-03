@@ -17,7 +17,7 @@ export function useNativeBalances(uncheckedAddresses?: (string | undefined)[]): 
 } {
   const native = useNativeCurrency()
   const multicallContract = useMulticallContract()
-
+  // console.log('multicallContract', multicallContract)
   const addresses: string[] = useMemo(
     () =>
       uncheckedAddresses ? orderBy(uncheckedAddresses.map(isAddress).filter((a): a is string => a !== false)) : [],
@@ -29,6 +29,7 @@ export function useNativeBalances(uncheckedAddresses?: (string | undefined)[]): 
     'getEthBalance',
     useMemo(() => addresses.map((address) => [address]), [addresses]),
   )
+  // console.log('results', results)
 
   return useMemo(
     () =>
@@ -113,7 +114,6 @@ export function useCurrencyBalances(
   )
   const uncheckedAddresses = useMemo(() => (containsNative ? [account] : []), [containsNative, account])
   const nativeBalance = useNativeBalances(uncheckedAddresses)
-
   return useMemo(
     () =>
       currencies?.map((currency) => {

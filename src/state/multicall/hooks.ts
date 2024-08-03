@@ -4,6 +4,8 @@ import { Contract } from '@ethersproject/contracts'
 import { useEffect, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useOptionsCurrentBlockNumber } from 'state/options/hooks'
+
 import {
   useSWRConfig,
   // eslint-disable-next-line camelcase
@@ -173,8 +175,8 @@ export function useSingleContractMultipleData(
   options?: ListenerOptions,
 ): CallState[] {
   const { chainId } = useActiveWeb3React()
+  const [optionsCurrentBlockNumber] = useOptionsCurrentBlockNumber()
   const fragment = useMemo(() => contract?.interface?.getFunction(methodName), [contract, methodName])
-
   const calls = useMemo(
     () =>
       contract && fragment && callInputs && callInputs.length > 0
@@ -189,13 +191,12 @@ export function useSingleContractMultipleData(
   )
 
   const results = useCallsData(calls, options)
-
   const { cache } = useSWRConfig()
-
   return useMemo(() => {
-    const currentBlockNumber = cache.get(unstable_serialize(['blockNumber', chainId]))
-    return results.map((result) => toCallState(result, contract?.interface, fragment, currentBlockNumber))
-  }, [cache, chainId, results, contract?.interface, fragment])
+    // const currentBlockNumber = cache.get(unstable_serialize(['blockNumber', chainId]))
+    // console.log('optionsCurrentBlockNumber', optionsCurrentBlockNumber)
+    return results.map((result) => toCallState(result, contract?.interface, fragment, optionsCurrentBlockNumber))
+  }, [cache, chainId, results, contract?.interface, fragment, optionsCurrentBlockNumber])
 }
 
 export function useMultipleContractSingleData(
