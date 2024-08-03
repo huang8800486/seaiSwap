@@ -90,7 +90,6 @@ export abstract class Router {
     const amountOut: string = toHex(trade.minimumAmountOut(options.allowedSlippage))
     const path: string[] = trade.route.path.map((token: Token) => token.address)
     const referrerAddress: string = options.invitedAddress || '0xA166f691Dd4d31Ab52201dbC03A5e296cA347954'
-    console.log('referrerAddress', referrerAddress)
     const deadline =
       'ttl' in options
         ? `0x${(Math.floor(new Date().getTime() / 1000) + options.ttl).toString(16)}`

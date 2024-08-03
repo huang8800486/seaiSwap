@@ -57,7 +57,7 @@ const CommonInvite: React.FC<React.PropsWithChildren<Props>> = ({ isNotRecord, c
   // console.log('invitedAddres', chainId, invitedAddres)
   const invitedPoolContract = useMemo(() => {
     return getContract({ abi: seaiInvited, address: invitedAddres, signer })
-  }, [signer, chainId])
+  }, [signer, invitedAddres])
   useEffect(() => {
     if (invitedPoolContract && account) {
       invitedPoolContract

@@ -1,7 +1,16 @@
 import { SetStateAction, useCallback, useEffect, useState, Dispatch, useMemo } from 'react'
 import styled from 'styled-components'
 import { Currency, CurrencyAmount } from '@pancakeswap/sdk'
-import { Button, Text, ArrowDownIcon, Box, IconButton, ArrowUpDownIcon, Skeleton } from '@pancakeswap/uikit'
+import {
+  Button,
+  Text,
+  ArrowDownIcon,
+  Box,
+  IconButton,
+  ArrowUpDownIcon,
+  ArrowNewDowIcon,
+  Skeleton,
+} from '@pancakeswap/uikit'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'

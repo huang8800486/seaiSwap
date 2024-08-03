@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Text, Flex, Heading, IconButton, ArrowBackIcon, NotificationDot } from '@pancakeswap/uikit'
+import { Text, Box, Flex, Heading, IconButton, ArrowBackIcon, NotificationDot } from '@pancakeswap/uikit'
 import { useExpertModeManager } from 'state/user/hooks'
 import GlobalSettings from 'components/Menu/GlobalSettings'
 import Link from 'next/link'
@@ -44,8 +44,16 @@ const AppHeader: React.FC<React.PropsWithChildren<Props>> = ({ title, subtitle, 
         <Flex flexDirection="column" width="100%">
           <Flex mb="8px" alignItems="center" justifyContent="space-between">
             <Flex>
-              <Heading as="h2" color="textSubtle2">
+              {/* <Heading as="h2" color="textSubtle2">
                 {title}
+              </Heading> */}
+              <Heading as="h2" textAlign="left" color="textSubtle2" fontSize="16px!important;" marginRight="32px">
+                <Flex width="100%" alignItems="center">
+                  <Box width="36px" height="36px" marginRight="11px">
+                    <img className="title_img" src="images/icons/liquidity_icon.png" alt="" />
+                  </Box>
+                  {title}
+                </Flex>
               </Heading>
               {helper && <QuestionHelper text={helper} ml="4px" placement="top-start" />}
             </Flex>

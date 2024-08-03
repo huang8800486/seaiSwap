@@ -25,7 +25,7 @@ export default function Invited() {
   const nftAddres = NFT_ADDRESS[chainId] || NFT_ADDRESS[-1]
   const nftPoolContract = useMemo(() => {
     return getContract({ abi: nftABI, address: nftAddres, signer })
-  }, [signer, chainId, nftAddres])
+  }, [signer, nftAddres])
   const fetchMyAPI = async () => {
     const balanceOf = await nftPoolContract.balanceOf(account)
     const length = +balanceOf.toString()
@@ -47,7 +47,7 @@ export default function Invited() {
     //   },
     // ]
     if (length && length > 0) {
-      console.log('length', length)
+      // console.log('length', length)
       for (let i = 0; i < length - 1; i++) {
         nftPoolContract
           .tokenOfOwnerByIndex(account, i)

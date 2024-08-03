@@ -28,7 +28,7 @@ export default function Invited() {
   // console.log('invitedAddres', chainId, invitedAddres)
   const invitedPoolContract = useMemo(() => {
     return getContract({ abi: seaiInvited, address: invitedAddres, signer })
-  }, [signer, chainId, invitedAddres])
+  }, [signer, invitedAddres])
   useEffect(() => {
     if (invitedPoolContract && account) {
       invitedPoolContract
@@ -57,7 +57,7 @@ export default function Invited() {
               time: formatTime(result[i].time.toString() * 1000, 'yyyy-MM-dd'),
             })
           }
-          console.log('array', array)
+          // console.log('array', array)
           setAwardList(array)
         })
         .catch((err) => {

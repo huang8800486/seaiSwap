@@ -3,6 +3,7 @@ export { default as AccountIcon } from "./Icons/Account";
 export { default as AddIcon } from "./Icons/Add";
 export { default as ArrowBackIcon } from "./Icons/ArrowBack";
 export { default as ArrowDownIcon } from "./Icons/ArrowDown";
+export { default as ArrowNewDowIcon } from "./Icons/ArrowNewDow";
 export { default as ArrowDropDownIcon } from "./Icons/ArrowDropDown";
 export { default as ArrowDropUpIcon } from "./Icons/ArrowDropUp";
 export { default as ArrowFirstIcon } from "./Icons/ArrowFirst";

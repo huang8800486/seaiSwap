@@ -135,7 +135,7 @@ export default function IntroContent() {
             <span>项目介绍</span>
           </h2>
           <div className="text">
-            <p>黑洞币本位挖矿鼻祖全力打造生态子币，全新NFT卡牌暴力分红，Swap生态分红。</p>
+            <p>SKAI黑洞币本位挖矿鼻祖全力打造生态，全新NFT卡牌暴力分红，Swap生态分红。</p>
           </div>
           <div className="swap_wrap">
             <div className="swap">
