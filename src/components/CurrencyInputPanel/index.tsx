@@ -22,7 +22,7 @@ const InputRow = styled.div<{ selected: boolean }>`
   flex-flow: row nowrap;
   align-items: center;
   justify-content: flex-end;
-  padding: ${({ selected }) => (selected ? '0.75rem 0.5rem 0.75rem 1rem' : '0.75rem 0.75rem 0.75rem 1rem')};
+  padding: ${({ selected }) => (selected ? '0.55rem 0.5rem 0.55rem 1rem' : '0.55rem 0.75rem 0.55rem 1rem')};
 `
 const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm' })<{ zapStyle?: ZapStyle }>`
   padding: 0 0.5rem;
@@ -81,6 +81,7 @@ interface CurrencyInputPanelProps {
   onInputBlur?: () => void
   onMax?: () => void
   showMaxButton: boolean
+  showSendText?: boolean
   label?: string
   onCurrencySelect?: (currency: Currency) => void
   currency?: Currency | null
@@ -103,6 +104,7 @@ export default function CurrencyInputPanel({
   onInputBlur,
   onMax,
   showMaxButton,
+  showSendText,
   label,
   onCurrencySelect,
   currency,
@@ -143,43 +145,64 @@ export default function CurrencyInputPanel({
 
   return (
     <Box position="relative" id={id}>
-      <Flex alignItems="center" justifyContent="space-between">
-        <Flex>
-          {beforeButton}
-          <CurrencySelectButton
-            zapStyle={zapStyle}
-            className="open-currency-select-button"
-            selected={!!currency}
-            onClick={() => {
-              if (!disableCurrencySelect) {
-                onPresentCurrencyModal()
-              }
-            }}
+      <Flex marginBottom="9px" justifyContent={showSendText ? 'space-between' : 'right'}>
+        {showSendText && <Text fontSize="14px">发送</Text>}
+        {account && (
+          <Text
+            onClick={!disabled && onMax}
+            color="primary"
+            fontSize="14px"
+            style={{ display: 'inline', cursor: 'pointer' }}
           >
-            <Flex alignItems="center" justifyContent="space-between">
-              {pair ? (
-                <DoubleCurrencyLogo currency0={pair.token0} currency1={pair.token1} size={16} margin />
-              ) : currency ? (
-                <CurrencyLogo currency={currency} size="24px" style={{ marginRight: '8px', fill: '#fff' }} />
-              ) : null}
-              {pair ? (
-                <Text id="pair" color="textSubtle2" bold>
-                  {pair?.token0.symbol}:{pair?.token1.symbol}
-                </Text>
-              ) : (
-                <Text id="pair" color="textSubtle2" bold>
-                  {(currency && currency.symbol && currency.symbol.length > 20
-                    ? `${currency.symbol.slice(0, 4)}...${currency.symbol.slice(
-                        currency.symbol.length - 5,
-                        currency.symbol.length,
-                      )}`
-                    : currency?.symbol) || t('Select a currency')}
-                </Text>
-              )}
-              {!disableCurrencySelect && <ChevronDownIcon color="textSubtle2" />}
-            </Flex>
-          </CurrencySelectButton>
-          {token && tokenAddress ? (
+            {!hideBalance && !!currency
+              ? t('Balance: %balance%', { balance: selectedCurrencyBalance?.toSignificant(6) ?? t('Loading') })
+              : ' -'}
+          </Text>
+        )}
+      </Flex>
+      <InputPanel>
+        <Container as="label" zapStyle={zapStyle} error={error}>
+          <Flex
+            alignItems="center"
+            justifyContent="space-between"
+            style={{ position: 'absolute', left: '6px', top: '8px', zIndex: '2', background: '#384767' }}
+          >
+            <Flex>
+              {beforeButton}
+              <CurrencySelectButton
+                zapStyle={zapStyle}
+                className="open-currency-select-button"
+                selected={!!currency}
+                onClick={() => {
+                  if (!disableCurrencySelect) {
+                    onPresentCurrencyModal()
+                  }
+                }}
+              >
+                <Flex alignItems="center" justifyContent="space-between">
+                  {pair ? (
+                    <DoubleCurrencyLogo currency0={pair.token0} currency1={pair.token1} size={16} margin />
+                  ) : currency ? (
+                    <CurrencyLogo currency={currency} size="24px" style={{ marginRight: '8px', fill: '#fff' }} />
+                  ) : null}
+                  {pair ? (
+                    <Text id="pair" color="textSubtle2" bold>
+                      {pair?.token0.symbol}:{pair?.token1.symbol}
+                    </Text>
+                  ) : (
+                    <Text id="pair" color="textSubtle2" bold>
+                      {(currency && currency.symbol && currency.symbol.length > 20
+                        ? `${currency.symbol.slice(0, 4)}...${currency.symbol.slice(
+                            currency.symbol.length - 5,
+                            currency.symbol.length,
+                          )}`
+                        : currency?.symbol) || t('Select a currency')}
+                    </Text>
+                  )}
+                  {!disableCurrencySelect && <ChevronDownIcon color="textSubtle2" />}
+                </Flex>
+              </CurrencySelectButton>
+              {/* {token && tokenAddress ? (
             <Flex style={{ gap: '4px' }} ml="4px" alignItems="center">
               <CopyButton
                 width="16px"
@@ -201,23 +224,9 @@ export default function CurrencyInputPanel({
                 tokenLogo={token instanceof WrappedTokenInfo ? token.logoURI : undefined}
               />
             </Flex>
-          ) : null}
-        </Flex>
-        {account && (
-          <Text
-            onClick={!disabled && onMax}
-            color="textSubtle"
-            fontSize="14px"
-            style={{ display: 'inline', cursor: 'pointer' }}
-          >
-            {!hideBalance && !!currency
-              ? t('Balance: %balance%', { balance: selectedCurrencyBalance?.toSignificant(6) ?? t('Loading') })
-              : ' -'}
-          </Text>
-        )}
-      </Flex>
-      <InputPanel>
-        <Container as="label" zapStyle={zapStyle} error={error}>
+          ) : null} */}
+            </Flex>
+          </Flex>
           <LabelRow>
             <NumericalInput
               error={error}

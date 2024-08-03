@@ -1,7 +1,12 @@
 import { useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { AppState, useAppDispatch } from '../index'
-import { updatedOptionsInvitedAddress, updatedOptionsShowSamllNav, updatedOptionsCurrentBlockNumber } from './actions'
+import {
+  updatedOptionsInvitedAddress,
+  updatedOptionsShowSamllNav,
+  updatedOptionsCurrentBlockNumber,
+  updatedOptionsNftList,
+} from './actions'
 
 export function useOptionsInvitedAddress(): [string, (address: string) => void] {
   const dispatch = useAppDispatch()
@@ -47,4 +52,19 @@ export function useOptionsShowSamllNav(): [boolean, (flag: boolean) => void] {
   )
 
   return [optionsShowSamllNav, setOptionsShowSamllNav]
+}
+export function useOptionsNftList(): [any, (flag: any) => void] {
+  const dispatch = useAppDispatch()
+  const optionsNftList = useSelector<AppState, AppState['options']['optionsNftList']>((state) => {
+    return state.options.optionsNftList
+  })
+
+  const setOptionsNftList = useCallback(
+    (flag: any) => {
+      dispatch(updatedOptionsNftList({ optionsNftList: flag }))
+    },
+    [dispatch],
+  )
+
+  return [optionsNftList, setOptionsNftList]
 }

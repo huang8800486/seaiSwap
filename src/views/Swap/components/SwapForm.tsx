@@ -42,6 +42,7 @@ import useRefreshBlockNumberID from '../hooks/useRefreshBlockNumber'
 import AddressInputPanel from './AddressInputPanel'
 import AdvancedSwapDetailsDropdown from './AdvancedSwapDetailsDropdown'
 import TradePrice from './TradePrice'
+// import GasSettings from '../../../components/Menu/GlobalSettings/GasSettings'
 import { ArrowWrapper, Wrapper } from './styleds'
 
 const Label = styled(Text)`
@@ -55,6 +56,7 @@ const SwitchIconButton = styled(IconButton)`
   .icon-up-down {
     display: none;
   }
+  background: none !important;
   &:hover {
     background-color: ${({ theme }) => theme.colors.primary};
     .icon-down {
@@ -232,6 +234,7 @@ export default function SwapForm({ setIsChartDisplayed, isChartDisplayed, isAcce
           <AutoColumn gap="sm">
             <CurrencyInputPanel
               label={independentField === Field.OUTPUT && !showWrap && trade ? t('From (estimated)') : t('From')}
+              showSendText
               value={formattedAmounts[Field.INPUT]}
               showMaxButton={!atMaxAmountInput}
               currency={currencies[Field.INPUT]}
@@ -254,14 +257,17 @@ export default function SwapForm({ setIsChartDisplayed, isChartDisplayed, isAcce
                     onSwitchTokens()
                   }}
                 >
-                  <ArrowDownIcon
+                  <Box width="24px">
+                    <img src="/images/icons/switch_icon.png" alt="" />
+                  </Box>
+                  {/* <ArrowDownIcon
                     className="icon-down"
                     color={currencies[Field.INPUT] && currencies[Field.OUTPUT] ? 'primary' : 'text'}
                   />
                   <ArrowUpDownIcon
                     className="icon-up-down"
                     color={currencies[Field.INPUT] && currencies[Field.OUTPUT] ? 'primary' : 'text'}
-                  />
+                  /> */}
                 </SwitchIconButton>
                 {recipient === null && !showWrap && isExpertMode ? (
                   <Button variant="text" id="add-recipient-button" onClick={() => onChangeRecipient('')}>
@@ -328,7 +334,7 @@ export default function SwapForm({ setIsChartDisplayed, isChartDisplayed, isAcce
               </AutoColumn>
             )}
           </AutoColumn>
-          <Box mt="0.25rem">
+          <Box mt="0.25rem" style={{ textAlign: 'center' }}>
             <SwapCommitButton
               swapIsUnsupported={swapIsUnsupported}
               account={account}
@@ -350,6 +356,7 @@ export default function SwapForm({ setIsChartDisplayed, isChartDisplayed, isAcce
               onUserInput={onUserInput}
             />
           </Box>
+          {/* {chainId === ChainId.BSC && <GasSettings hideTitle/>} */}
         </Wrapper>
         {!swapIsUnsupported ? (
           trade && <AdvancedSwapDetailsDropdown trade={trade} />

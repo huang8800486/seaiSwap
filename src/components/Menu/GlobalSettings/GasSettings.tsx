@@ -1,19 +1,23 @@
 import { Flex, Button, Text } from '@pancakeswap/uikit'
 import QuestionHelper from 'components/QuestionHelper'
+import { ChainId } from '@pancakeswap/sdk'
 import { useTranslation } from '@pancakeswap/localization'
 import { useGasPriceManager } from 'state/user/hooks'
 import { GAS_PRICE_GWEI, GAS_PRICE } from 'state/types'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { ChainId } from '@pancakeswap/sdk'
 
-const GasSettings = () => {
+interface Props {
+  hideTitle?: boolean
+}
+
+const GasSettings: React.FC<React.PropsWithChildren<Props>> = ({ hideTitle }) => {
   const { t } = useTranslation()
   const { chainId } = useActiveWeb3React()
   const [gasPrice, setGasPrice] = useGasPriceManager()
 
   return (
     <Flex flexDirection="column">
-      {chainId === ChainId.BSC && (
+      {chainId === ChainId.BSC && !hideTitle && (
         <Flex mb="12px" alignItems="center">
           <Text>{t('Default Transaction Speed (GWEI)')}</Text>
           <QuestionHelper

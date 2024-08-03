@@ -295,6 +295,7 @@ export default function SwapCommitButton({
         }}
         id="swap-button"
         width="100%"
+        style={{ borderRadius: '0', width: 'auto' }}
         disabled={!isValid || (priceImpactSeverity > 3 && !isExpertMode) || !!swapCallbackError}
       >
         {swapInputError ||

@@ -193,10 +193,10 @@ export function useSingleContractMultipleData(
   const results = useCallsData(calls, options)
   const { cache } = useSWRConfig()
   return useMemo(() => {
-    // const currentBlockNumber = cache.get(unstable_serialize(['blockNumber', chainId]))
+    const currentBlockNumber = cache.get(unstable_serialize(['blockNumber', chainId]))
     // console.log('optionsCurrentBlockNumber', optionsCurrentBlockNumber)
-    return results.map((result) => toCallState(result, contract?.interface, fragment, optionsCurrentBlockNumber))
-  }, [cache, chainId, results, contract?.interface, fragment, optionsCurrentBlockNumber])
+    return results.map((result) => toCallState(result, contract?.interface, fragment, currentBlockNumber))
+  }, [cache, chainId, results, contract?.interface, fragment])
 }
 
 export function useMultipleContractSingleData(

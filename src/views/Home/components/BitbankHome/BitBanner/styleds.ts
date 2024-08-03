@@ -12,7 +12,8 @@ export const BannerWrapper = styled.div`
     width: 100%;
     position: relative;
     padding-top: 57.01%;
-    z-index:2;
+    z-index: 2;
+    overflow: hidden;
     .banner_cover {
       width: 100%;
       height: 100%;
@@ -24,14 +25,19 @@ export const BannerWrapper = styled.div`
         left: 0;
         top: 0;
         width: 100%;
-        img {
+        height: 100%;
+        .reviews_item {
           width: 100%;
+          height: 100%;
         }
       }
       .banner_text {
-        position: relative;
+        position: absolute;
+        left: 0;
+        top: 0;
         padding-top: ${getMedia(['55px', '10%', '15%'])};
         padding-left: ${getMedia(['16px', '10%', '15%'])};
+        z-index: 2;
         h2 {
           font-size: ${getMedia(['30px', '60px', '80px'])};
           color: #ffffff;

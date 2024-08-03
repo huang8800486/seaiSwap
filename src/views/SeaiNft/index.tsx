@@ -9,7 +9,9 @@ import { useSigner } from 'wagmi'
 import { NFT_ADDRESS } from '@pancakeswap/sdk'
 import { ROUTER_ADDRESS } from 'config/constants/exchange'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useOptionsNftList } from 'state/options/hooks'
 import nftABI from 'config/abi/nftABI.json'
+import { http } from './https/index'
 import { BodyWrap } from './style'
 import CommonBox from '../Home/components/BitbankHome/CommonBox'
 import CommonItem from '../Home/components/BitbankHome/CommonItem'
@@ -20,69 +22,71 @@ export default function Invited() {
   const { isMobile } = useMatchBreakpoints()
   const { account } = useWeb3React()
   const { data: signer } = useSigner()
-  const [mySuperior, setMySuperior] = useState('')
-  const [myInvitedList, setMyInvitedList] = useState([])
+  const [isFlag, setIsFlag] = useState(false)
   const nftAddres = NFT_ADDRESS[chainId] || NFT_ADDRESS[-1]
+  const [optionsNftList, setOptionsNftList] = useOptionsNftList()
   const nftPoolContract = useMemo(() => {
     return getContract({ abi: nftABI, address: nftAddres, signer })
   }, [signer, nftAddres])
-  const fetchMyAPI = async () => {
-    const balanceOf = await nftPoolContract.balanceOf(account)
-    const length = +balanceOf.toString()
-    const collectionList = []
-    // const ayya = [
-    //   {
-    //     name: 'SKAISwapNFT #0',
-    //     symbol: 'SKAISwapNFT',
-    //     description: 'SKAISwapNFT limited edition of 333 pieces, unique feature Swap bonus.',
-    //     image: 'https://nft.seaiswap.ai/img/robot/0.jpg',
-    //     attributes: [{}],
-    //   },
-    //   {
-    //     name: 'SKAISwapNFT #1',
-    //     symbol: 'SKAISwapNFT',
-    //     description: 'SKAISwapNFT limited edition of 333 pieces, unique feature Swap bonus.',
-    //     image: 'https://nft.seaiswap.ai/img/robot/0.jpg',
-    //     attributes: [{}],
-    //   },
-    // ]
-    if (length && length > 0) {
-      setMyInvitedList([])
-      // console.log('length', length)
-      for (let i = 0; i <= length - 1; i++) {
-        nftPoolContract
-          .tokenOfOwnerByIndex(account, i)
-          .then((data) => {
-            const tokendId = data.toString()
-            nftPoolContract
-              .tokenURI(tokendId)
-              .then(async (url) => {
-                const res = await fetch(url.toString())
-                const json = await res.json()
-                collectionList.push(json)
-              })
-              .catch((err) => {
-                console.log('tokenURI', err)
-                // setMyInvitedList([])
-              })
-
-            // collectionList.push(ayya[i])
-          })
-          .catch((err) => {
-            console.log('tokenOfOwnerByIndex', err)
-            // setMyInvitedList([])
-          })
-      }
-    }
-    setMyInvitedList(collectionList)
-  }
 
   useEffect(() => {
     if (nftPoolContract && account) {
-      console.log('nftPoolContract', nftPoolContract)
-      fetchMyAPI()
+      nftPoolContract
+        .balanceOf(account)
+        .then((result) => {
+          const length = +result.toString()
+          const array = []
+          if (length && length > 0) {
+            for (let i = 0; i <= length - 1; i++) {
+              array.push({ image: '', name: '', symbol: '' })
+              nftPoolContract
+                .tokenOfOwnerByIndex(account, i)
+                .then((number) => {
+                  const tokendId = number.toString()
+                  nftPoolContract
+                    .tokenURI(tokendId)
+                    .then((url) => {
+                      http({
+                        method: 'get',
+                        url,
+                        isEmpty: true,
+                        dataType: 'json',
+                      })
+                        .then((data) => {
+                          console.log('data', data)
+                          array[i].image = data.image
+                          array[i].name = data.name
+                          array[i].symbol = data.symbol
+                          setOptionsNftList(array)
+                        })
+                        .catch((err) => {
+                          if (err && err.image) {
+                            array[i].image = err.image
+                            array[i].name = err.name
+                            array[i].symbol = err.symbol
+                            setOptionsNftList(array)
+                          }
+                        })
+                    })
+                    .catch((err) => {
+                      console.log('tokenURI', err)
+                    })
+                })
+                .catch((err) => {
+                  console.log('tokenOfOwnerByIndex', err)
+                })
+            }
+          }
+          console.log('setMyInvitedList', array)
+          setTimeout(() => {
+            setOptionsNftList(array)
+          }, 5000)
+        })
+        .catch((err) => {
+          console.log('setMyInvitedList', err)
+        })
     }
-  }, [nftPoolContract, account])
+  }, [nftPoolContract, account, setOptionsNftList])
   const receiveClick = () => {
     console.log('1')
   }
@@ -104,7 +108,7 @@ export default function Invited() {
   return (
     <BodyWrap>
       <div className="nft_list_wrap">
-        {myInvitedList.map((items) => (
+        {optionsNftList.map((items) => (
           <div className="nft_list" key={items.symbol}>
             <CommonBox>
               <div className="nft_img">

@@ -18,7 +18,7 @@ export const BodyWrap = styled.div`
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    max-height: ${getMedia(['500px', '500px', '400px'])};
+    max-height: ${getMedia(['455px', '500px', '400px'])};
     overflow-y: auto;
     .nft_list {
       width: ${getMedia(['50%', '50%', '25%'])};

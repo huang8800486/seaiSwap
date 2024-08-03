@@ -17,6 +17,7 @@ import GlobalSettings from 'components/Menu/GlobalSettings'
 import { useExpertModeManager } from 'state/user/hooks'
 import RefreshIcon from 'components/Svg/RefreshIcon'
 import { ReactElement, useCallback } from 'react'
+import SettingsModal from '../../../components/Menu/GlobalSettings/SettingsModal'
 import { SettingsMode } from '../../../components/Menu/GlobalSettings/types'
 
 interface Props {
@@ -32,9 +33,9 @@ interface Props {
 const CurrencyInputContainer = styled(Flex)`
   flex-direction: column;
   align-items: center;
-  padding: 24px 1rem;
+  padding: 24px 1rem 0;
   width: 100%;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
+  /* border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder}; */
 `
 
 const ColoredIconButton = styled(IconButton)`
@@ -50,6 +51,7 @@ const CurrencyInputHeader: React.FC<React.PropsWithChildren<Props>> = ({
   onRefreshPrice,
 }) => {
   const [expertMode] = useExpertModeManager()
+  const [onPresentSettingsModal] = useModal(<SettingsModal mode={SettingsMode.SWAP_LIQUIDITY} />)
   const toggleChartDisplayed = () => {
     setIsChartDisplayed((currentIsChartDisplayed) => !currentIsChartDisplayed)
   }
@@ -87,18 +89,25 @@ const CurrencyInputHeader: React.FC<React.PropsWithChildren<Props>> = ({
           <NotificationDot show={expertMode}>
             <Flex>
               <Text
+                onClick={onPresentSettingsModal}
                 style={{
                   position: 'absolute',
-                  width: '60px',
+                  right: '0',
+                  top: '5px',
                   background: '#02C4F4',
                   borderRadius: '20px',
                   color: '#333333',
                   textAlign: 'center',
-                  padding: '2px 0',
+                  padding: '2px 18px',
+                  whiteSpace: 'nowrap',
+                  zIndex: '1',
+                  display: 'flex',
+                  alignItems: 'center',
                 }}
                 fontSize="12px"
               >
                 设置滑点
+                <img style={{ width: '14px', marginLeft: '2px' }} src="/images/icons/setting.png" alt="" />
               </Text>
               <GlobalSettings color="textSubtle2" mr="0" mode={SettingsMode.SWAP_LIQUIDITY} />
             </Flex>
