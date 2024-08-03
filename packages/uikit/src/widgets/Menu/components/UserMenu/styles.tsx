@@ -28,7 +28,7 @@ export const UserMenuItem = styled.button<UserMenuItemProps>`
   }
 
   &:hover:not(:disabled) {
-    background-color: ${({ theme }) => theme.colors.tertiary};
+    background-color: ${({ theme }) => theme.colors.primary};
   }
 
   &:active:not(:disabled) {

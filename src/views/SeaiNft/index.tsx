@@ -38,7 +38,7 @@ export default function Invited() {
           const array = []
           if (length && length > 0) {
             for (let i = 0; i <= length - 1; i++) {
-              array.push({ image: '', name: '', symbol: '' })
+              array.push({ image: '', name: '', symbol: '', tokenId: i })
               nftPoolContract
                 .tokenOfOwnerByIndex(account, i)
                 .then((number) => {
@@ -53,18 +53,33 @@ export default function Invited() {
                         dataType: 'json',
                       })
                         .then((data) => {
-                          console.log('data', data)
-                          array[i].image = data.image
-                          array[i].name = data.name
-                          array[i].symbol = data.symbol
-                          setOptionsNftList(array)
+                          // const nextArtists = [
+                          //   // Items before the insertion point:
+                          //   ...array.slice(0, insertAt),
+                          //   // New item:
+                          //   { id: nextId++, name: name },
+                          //   // Items after the insertion point:
+                          //   ...artists.slice(insertAt)
+                          // ];
+                          const myNextList = [...array]
+                          const artwork = myNextList.find((a) => a.tokenId === i)
+                          artwork.image = data.image
+                          artwork.name = data.name
+                          artwork.symbol = data.symbol
+                          setTimeout(() => {
+                            setOptionsNftList(myNextList)
+                          }, 1000)
                         })
                         .catch((err) => {
                           if (err && err.image) {
-                            array[i].image = err.image
-                            array[i].name = err.name
-                            array[i].symbol = err.symbol
-                            setOptionsNftList(array)
+                            const myNextList = [...array]
+                            const artwork = myNextList.find((a) => a.tokenId === i)
+                            artwork.image = err.image
+                            artwork.name = err.name
+                            artwork.symbol = err.symbol
+                            setTimeout(() => {
+                              setOptionsNftList(myNextList)
+                            }, 1000)
                           }
                         })
                     })
@@ -77,7 +92,7 @@ export default function Invited() {
                 })
             }
           }
-          console.log('setMyInvitedList', array)
+          // console.log('setMyInvitedList', array)
           setTimeout(() => {
             setOptionsNftList(array)
           }, 5000)
@@ -109,7 +124,7 @@ export default function Invited() {
     <BodyWrap>
       <div className="nft_list_wrap">
         {optionsNftList.map((items) => (
-          <div className="nft_list" key={items.symbol}>
+          <div className="nft_list" key={items.name}>
             <CommonBox>
               <div className="nft_img">
                 <img src={items.image} alt="" />
