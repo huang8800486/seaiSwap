@@ -47,8 +47,9 @@ export default function Invited() {
     //   },
     // ]
     if (length && length > 0) {
+      setMyInvitedList([])
       // console.log('length', length)
-      for (let i = 0; i < length - 1; i++) {
+      for (let i = 0; i <= length - 1; i++) {
         nftPoolContract
           .tokenOfOwnerByIndex(account, i)
           .then((data) => {
@@ -73,9 +74,7 @@ export default function Invited() {
           })
       }
     }
-    setTimeout(() => {
-      setMyInvitedList(collectionList)
-    }, 2000)
+    setMyInvitedList(collectionList)
   }
 
   useEffect(() => {
