@@ -96,6 +96,7 @@ const SlippageTabs = () => {
             mt="4px"
             mr="4px"
             scale="sm"
+            style={{ borderRadius: '16px', height: '24px', padding: '0 20px' }}
             onClick={() => {
               setSlippageInput('')
               setUserSlippageTolerance(10)
@@ -108,6 +109,7 @@ const SlippageTabs = () => {
             mt="4px"
             mr="4px"
             scale="sm"
+            style={{ borderRadius: '16px', height: '24px', padding: '0 20px' }}
             onClick={() => {
               setSlippageInput('')
               setUserSlippageTolerance(50)
@@ -120,6 +122,7 @@ const SlippageTabs = () => {
             mr="4px"
             mt="4px"
             scale="sm"
+            style={{ borderRadius: '16px', height: '24px', padding: '0 20px' }}
             onClick={() => {
               setSlippageInput('')
               setUserSlippageTolerance(100)
@@ -132,6 +135,7 @@ const SlippageTabs = () => {
             <Box width="76px" mt="4px">
               <Input
                 scale="sm"
+                style={{ borderRadius: '16px', height: '24px', padding: '0 20px' }}
                 inputMode="decimal"
                 pattern="^[0-9]*[.,]?[0-9]{0,2}$"
                 placeholder={(userSlippageTolerance / 100).toFixed(2)}
@@ -176,6 +180,7 @@ const SlippageTabs = () => {
           <Box width="52px" mt="4px">
             <Input
               scale="sm"
+              style={{ borderRadius: '16px', height: '24px' }}
               inputMode="numeric"
               pattern="^[0-9]+$"
               isWarning={!!deadlineError}
