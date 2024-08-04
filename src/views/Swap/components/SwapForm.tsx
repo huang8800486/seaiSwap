@@ -17,7 +17,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useTranslation } from '@pancakeswap/localization'
 import { maxAmountSpend } from 'utils/maxAmountSpend'
 import { useSwapActionHandlers } from 'state/swap/useSwapActionHandlers'
-import AccessRisk from 'views/Swap/components/AccessRisk'
+// import AccessRisk from 'views/Swap/components/AccessRisk'
 
 import CurrencyInputPanel from 'components/CurrencyInputPanel'
 import { CommonBasesType } from 'components/SearchModal/types'
@@ -230,11 +230,10 @@ export default function SwapForm({ setIsChartDisplayed, isChartDisplayed, isAcce
           hasAmount={hasAmount}
           onRefreshPrice={onRefreshPrice}
         />
-        <Wrapper id="swap-page" style={{ minHeight: '412px' }}>
+        <Wrapper id="swap-page" style={{ minHeight: '388px' }}>
           <AutoColumn gap="sm">
             <CurrencyInputPanel
               label={independentField === Field.OUTPUT && !showWrap && trade ? t('From (estimated)') : t('From')}
-              showSendText
               value={formattedAmounts[Field.INPUT]}
               showMaxButton={!atMaxAmountInput}
               currency={currencies[Field.INPUT]}
@@ -289,9 +288,9 @@ export default function SwapForm({ setIsChartDisplayed, isChartDisplayed, isAcce
               commonBasesType={CommonBasesType.SWAP_LIMITORDER}
             />
 
-            <Box style={{ display: isShowAccessToken ? 'block' : 'none' }}>
+            {/* <Box style={{ display: isShowAccessToken ? 'block' : 'none' }}>
               <AccessRisk currency={currencies[Field.OUTPUT]} />
-            </Box>
+            </Box> */}
 
             {isExpertMode && recipient !== null && !showWrap ? (
               <>

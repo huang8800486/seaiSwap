@@ -29,6 +29,9 @@ export const BannerWrapper = styled.div`
         .reviews_item {
           width: 100%;
           height: 100%;
+          img {
+            width: 100%;
+          }
         }
       }
       .banner_text {

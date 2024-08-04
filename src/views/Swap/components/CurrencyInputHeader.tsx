@@ -51,7 +51,6 @@ const CurrencyInputHeader: React.FC<React.PropsWithChildren<Props>> = ({
   onRefreshPrice,
 }) => {
   const [expertMode] = useExpertModeManager()
-  const [onPresentSettingsModal] = useModal(<SettingsModal mode={SettingsMode.SWAP_LIQUIDITY} />)
   const toggleChartDisplayed = () => {
     setIsChartDisplayed((currentIsChartDisplayed) => !currentIsChartDisplayed)
   }
@@ -69,9 +68,9 @@ const CurrencyInputHeader: React.FC<React.PropsWithChildren<Props>> = ({
         <Flex flexDirection="column" width="100%" mr={18}>
           <Heading as="h2" textAlign="left" color="textSubtle2" fontSize="16px!important;" marginRight="32px">
             <Flex width="100%" alignItems="center">
-              <Box width="36px" height="36px" marginRight="11px">
+              {/* <Box width="36px" height="36px" marginRight="11px">
                 <img className="title_img" src="/images/icons/trade_icon.png" alt="" />
-              </Box>
+              </Box> */}
               {title}
             </Flex>
           </Heading>
@@ -85,10 +84,14 @@ const CurrencyInputHeader: React.FC<React.PropsWithChildren<Props>> = ({
                 <ChartIcon width="24px" color="textSubtle2" />
               )}
             </ColoredIconButton>
-          )} */}
+          )} */}{' '}
+          <IconButton variant="text" scale="sm" onClick={handleOnClick}>
+            {/* <RefreshIcon disabled={!hasAmount} color="textSubtle2" width="27px" /> */}
+            <img src="/images/icons/refresh.png" width="22px" alt="" color="#fff" />
+          </IconButton>
           <NotificationDot show={expertMode}>
             <Flex>
-              <Text
+              {/* <Text
                 onClick={onPresentSettingsModal}
                 style={{
                   position: 'absolute',
@@ -108,23 +111,20 @@ const CurrencyInputHeader: React.FC<React.PropsWithChildren<Props>> = ({
               >
                 设置滑点
                 <img style={{ width: '14px', marginLeft: '2px' }} src="/images/icons/setting.png" alt="" />
-              </Text>
+              </Text> */}
               <GlobalSettings color="textSubtle2" mr="0" mode={SettingsMode.SWAP_LIQUIDITY} />
             </Flex>
           </NotificationDot>
           {/* <IconButton onClick={onPresentTransactionsModal} variant="text" scale="sm">
             <HistoryIcon color="textSubtle2" width="24px" />
           </IconButton> */}
-          {/* <IconButton variant="text" scale="sm" onClick={handleOnClick}>
-            <RefreshIcon disabled={!hasAmount} color="textSubtle2" width="27px" />
-          </IconButton> */}
         </Flex>
       </Flex>
-      {/* <Flex alignItems="center">
+      <Flex width="100%" alignItems="center" justifyContent="left">
         <Text color="#CCCCCC" fontSize="14px">
           {subtitle}
         </Text>
-      </Flex> */}
+      </Flex>
     </CurrencyInputContainer>
   )
 }

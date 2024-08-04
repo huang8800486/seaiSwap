@@ -1,4 +1,4 @@
-import { Box, Flex, useMatchBreakpoints } from '@pancakeswap/uikit'
+import { Box, Flex, useMatchBreakpoints, Card } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 
 export const getMedia = (value: string[]) => () => {
@@ -23,10 +23,22 @@ export const getMedia2 = (value: string[]) => () => {
   }
   return result
 }
+export const StyledBodyWrapper = styled(Card)`
+  max-width: 436px;
+  width: 100%;
+  z-index: 1;
+  background: #27334d !important;
+  border-radius: 0 !important;
+  min-width: 320px;
+  padding-right: 0;
+  padding-left: 0;
+`
 export const StyledSwapContainer = styled(Flex)<{ $isChartExpanded: boolean }>`
   flex-shrink: 0;
   height: fit-content;
   /* padding: 0 24px; */
+  width: 100%;
+  margin: 0 auto;
 
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: 0 40px;
@@ -38,5 +50,6 @@ export const StyledSwapContainer = styled(Flex)<{ $isChartExpanded: boolean }>`
 `
 
 export const StyledInputCurrencyWrapper = styled(Box)`
-  width: ${getMedia2(['320px', '340px', '368px', '392px', '392px', '392px'])};
+  /* width: ${getMedia2(['320px', '340px', '368px', '392px', '392px', '392px'])}; */
+  width: 100%;
 `

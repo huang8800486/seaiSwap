@@ -21,6 +21,7 @@ import { StyledInputCurrencyWrapper, StyledSwapContainer } from './styles'
 import SwapTab, { SwapType } from './components/SwapTab'
 import SwapNavTitle from './components/SwapNavTitle'
 import SwapTitle from './components/SwapTitle/index'
+import SwapNav from './components/SwapNav/index'
 import Liquidity from '../../pages/liquidity'
 
 const CHART_SUPPORT_CHAIN_IDS = [ChainId.BSC]
@@ -74,73 +75,39 @@ export default function Swap() {
   }
   return (
     <>
-      {/* <SwapTitle /> */}
+      <SwapTitle />
       <Page isSwapBg removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded}>
-        <Flex width="100%" justifyContent="center" position="relative">
-          {/* {!isMobile && isChartSupported && (
-            <PriceChartContainer
-              inputCurrencyId={inputCurrencyId}
-              inputCurrency={currencies[Field.INPUT]}
-              outputCurrencyId={outputCurrencyId}
-              outputCurrency={currencies[Field.OUTPUT]}
-              isChartExpanded={isChartExpanded}
-              setIsChartExpanded={setIsChartExpanded}
-              isChartDisplayed={isChartDisplayed}
-              currentSwapPrice={singleTokenPrice}
-            />
-          )}
-          {isChartSupported && (
-            <BottomDrawer
-              content={
-                <PriceChartContainer
-                  inputCurrencyId={inputCurrencyId}
-                  inputCurrency={currencies[Field.INPUT]}
-                  outputCurrencyId={outputCurrencyId}
-                  outputCurrency={currencies[Field.OUTPUT]}
-                  isChartExpanded={isChartExpanded}
-                  setIsChartExpanded={setIsChartExpanded}
-                  isChartDisplayed={isChartDisplayed}
-                  currentSwapPrice={singleTokenPrice}
-                  isMobile
-                />
-              }
-              isOpen={isChartDisplayed}
-              setIsOpen={setIsChartDisplayed}
-            />
-          )} */}
-          <Flex flexDirection="column">
-            <StyledSwapContainer $isChartExpanded={isChartExpanded}>
-              <StyledInputCurrencyWrapper mt={isChartExpanded ? '24px' : '0'}>
-                <AppBody>
-                  {/* <SwapNavTitle currentIndex={currentIndex} changeCurrent={changeCurrent} /> */}
-                  <SwapTab showStable={isStableSupported}>
-                    {(swapTypeState) =>
-                      swapTypeState === SwapType.STABLE_SWAP ? (
-                        <StableSwapFormContainer
-                          setIsChartDisplayed={setIsChartDisplayed}
-                          isChartDisplayed={isChartDisplayed}
-                        />
-                      ) : (
-                        <SwapForm
-                          isAccessTokenSupported={isAccessTokenSupported}
-                          setIsChartDisplayed={setIsChartDisplayed}
-                          isChartDisplayed={isChartDisplayed}
-                        />
-                      )
-                    }
-                  </SwapTab>
-                  {/* {currentIndex === 1 && <Liquidity />} */}
-                </AppBody>
-              </StyledInputCurrencyWrapper>
-            </StyledSwapContainer>
-            {isChartExpanded && (
-              <Box display={['none', null, null, 'block']} width="100%" height="100%">
-                <Footer variant="side" helpUrl={EXCHANGE_DOCS_URLS} />
-              </Box>
-            )}
-          </Flex>
-        </Flex>
+        <StyledSwapContainer $isChartExpanded={isChartExpanded}>
+          <StyledInputCurrencyWrapper mt={isChartExpanded ? '24px' : '0'}>
+            <AppBody>
+              {/* <SwapNavTitle currentIndex={currentIndex} changeCurrent={changeCurrent} /> */}
+              <SwapTab showStable={isStableSupported}>
+                {(swapTypeState) =>
+                  swapTypeState === SwapType.STABLE_SWAP ? (
+                    <StableSwapFormContainer
+                      setIsChartDisplayed={setIsChartDisplayed}
+                      isChartDisplayed={isChartDisplayed}
+                    />
+                  ) : (
+                    <SwapForm
+                      isAccessTokenSupported={isAccessTokenSupported}
+                      setIsChartDisplayed={setIsChartDisplayed}
+                      isChartDisplayed={isChartDisplayed}
+                    />
+                  )
+                }
+              </SwapTab>
+              {/* {currentIndex === 1 && <Liquidity />} */}
+            </AppBody>
+          </StyledInputCurrencyWrapper>
+        </StyledSwapContainer>
+        {isChartExpanded && (
+          <Box display={['none', null, null, 'block']} width="100%" height="100%">
+            <Footer variant="side" helpUrl={EXCHANGE_DOCS_URLS} />
+          </Box>
+        )}
       </Page>
+      <SwapNav />
     </>
   )
 }
