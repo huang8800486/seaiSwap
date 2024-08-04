@@ -1,9 +1,10 @@
 import styled, { css } from 'styled-components'
 
-export const CommonContent = styled.div`
+export const CommonContent = styled.div<{ $isNoMargin: boolean }>`
   width: 100%;
   position: relative;
   margin-bottom: 30px;
+  margin-bottom: ${({ $isNoMargin }) => ($isNoMargin ? '0' : '30px')};
   .flag_box {
     position: absolute;
     z-index: 10;
@@ -79,10 +80,13 @@ export const CommonContent = styled.div`
     }
   }
 `
-const CommonBox: React.FC<React.PropsWithChildren> = ({ children }) => {
+interface Props {
+  isNoMargin?: boolean
+}
+const CommonBox: React.FC<React.PropsWithChildren<Props>> = ({ isNoMargin, children }) => {
   return (
     <>
-      <CommonContent>
+      <CommonContent $isNoMargin={isNoMargin}>
         <i className="flag_box flag_box_1" />
         <i className="flag_box flag_box_2" />
         <i className="flag_box flag_box_3" />

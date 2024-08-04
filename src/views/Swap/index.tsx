@@ -23,6 +23,7 @@ import SwapNavTitle from './components/SwapNavTitle'
 import SwapTitle from './components/SwapTitle/index'
 import SwapNav from './components/SwapNav/index'
 import Liquidity from '../../pages/liquidity'
+import CommonBox from '../Home/components/BitbankHome/CommonBox'
 
 const CHART_SUPPORT_CHAIN_IDS = [ChainId.BSC]
 export const ACCESS_TOKEN_SUPPORT_CHAIN_IDS = [ChainId.BSC]
@@ -80,23 +81,25 @@ export default function Swap() {
         <StyledSwapContainer $isChartExpanded={isChartExpanded}>
           <StyledInputCurrencyWrapper mt={isChartExpanded ? '24px' : '0'}>
             <AppBody>
-              {/* <SwapNavTitle currentIndex={currentIndex} changeCurrent={changeCurrent} /> */}
-              <SwapTab showStable={isStableSupported}>
-                {(swapTypeState) =>
-                  swapTypeState === SwapType.STABLE_SWAP ? (
-                    <StableSwapFormContainer
-                      setIsChartDisplayed={setIsChartDisplayed}
-                      isChartDisplayed={isChartDisplayed}
-                    />
-                  ) : (
-                    <SwapForm
-                      isAccessTokenSupported={isAccessTokenSupported}
-                      setIsChartDisplayed={setIsChartDisplayed}
-                      isChartDisplayed={isChartDisplayed}
-                    />
-                  )
-                }
-              </SwapTab>
+              <CommonBox isNoMargin>
+                {/* <SwapNavTitle currentIndex={currentIndex} changeCurrent={changeCurrent} /> */}
+                <SwapTab showStable={isStableSupported}>
+                  {(swapTypeState) =>
+                    swapTypeState === SwapType.STABLE_SWAP ? (
+                      <StableSwapFormContainer
+                        setIsChartDisplayed={setIsChartDisplayed}
+                        isChartDisplayed={isChartDisplayed}
+                      />
+                    ) : (
+                      <SwapForm
+                        isAccessTokenSupported={isAccessTokenSupported}
+                        setIsChartDisplayed={setIsChartDisplayed}
+                        isChartDisplayed={isChartDisplayed}
+                      />
+                    )
+                  }
+                </SwapTab>
+              </CommonBox>
               {/* {currentIndex === 1 && <Liquidity />} */}
             </AppBody>
           </StyledInputCurrencyWrapper>

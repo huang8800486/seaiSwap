@@ -1,6 +1,7 @@
 import React from 'react'
 import { useMatchBreakpoints } from '@pancakeswap/uikit'
 import styled, { css } from 'styled-components'
+import CommonBox from '../../../Home/components/BitbankHome/CommonBox'
 
 export const getMedia = (value: string[]) => () => {
   const { isMobile, isTablet } = useMatchBreakpoints()
@@ -103,23 +104,25 @@ export const Wrapper = styled.div`
 export default function SwapTitle() {
   return (
     <Wrapper>
-      <div className="swap_title_wrap">
-        <div className="swap_title">
-          <img src="/images/seai/fen.png" className="fen" alt="" />
-          <div className="text_wrap">
-            <div className="text">
-              <h2>
-                <em>
-                  <i className="left" />
-                  风险提示
-                  <i className="right" />
-                </em>
-              </h2>
-              <span>警惕陌生链接｜不给陌生地址转账｜管理不会私聊任何人</span>
+      <CommonBox isNoMargin>
+        <div className="swap_title_wrap">
+          <div className="swap_title">
+            <img src="/images/seai/fen.png" className="fen" alt="" />
+            <div className="text_wrap">
+              <div className="text">
+                <h2>
+                  <em>
+                    <i className="left" />
+                    风险提示
+                    <i className="right" />
+                  </em>
+                </h2>
+                <span>警惕陌生链接｜不给陌生地址转账｜管理不会私聊任何人</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </CommonBox>
     </Wrapper>
   )
 }
