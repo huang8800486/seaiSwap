@@ -18,17 +18,17 @@ export const CAKE_TESTNET = new Token(
 )
 export const BT_MAINNET = new Token(
   ChainId.BSC,
-  '0xe0e470dc373b5DA295D4Cc8d0543D91850dD403A',
+  '0xec48bF513e3C3eb1b93fCA1E8148f57879c79999',
   18,
-  'BTH',
-  'WebxBank Token',
+  'SKAI',
+  'SKAI Token',
   // 'https://pancakeswap.finance/',
 )
 export const BT_TESTNET = new Token(
   ChainId.BSC_TESTNET,
   '0x516581e56d1b94f53C28FE748CEa373aa9A4D611',
   18,
-  'BTH',
+  'SKAI',
   'WebxBank Token',
   // 'https://pancakeswap.finance/',
 )
@@ -144,7 +144,7 @@ export const CAKE = {
   [ChainId.BSC]: CAKE_MAINNET,
   [ChainId.BSC_TESTNET]: CAKE_TESTNET,
 }
-export const BTH = {
+export const SKAI = {
   [ChainId.BSC]: BT_MAINNET,
   [ChainId.BSC_TESTNET]: BT_TESTNET,
 }

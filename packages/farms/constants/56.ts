@@ -336,9 +336,9 @@ const farms: SerializedFarmConfig[] = [
   {
     pid: 87,
     v1pid: 516,
-    lpSymbol: 'BTH-BNB LP',
+    lpSymbol: 'SKAI-BNB LP',
     lpAddress: '0x8ca3ff14a52b080c54a6d1a405eeca02959d39fe',
-    token: bscTokens.bth,
+    token: bscTokens.skai,
     quoteToken: bscTokens.wbnb,
   },
   {

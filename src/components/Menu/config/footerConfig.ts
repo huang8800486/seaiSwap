@@ -80,7 +80,7 @@ export const footerLinks: (t: ContextApi['t']) => FooterLinkType[] = (t) => [
         href: '',
       },
       {
-        label: 'BTH Token',
+        label: 'SKAI Token',
         href: '',
       },
       {

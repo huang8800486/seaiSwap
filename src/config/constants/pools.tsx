@@ -401,7 +401,7 @@ const finishedPools = [
   {
     sousId: 271,
     stakingToken: bscTokens.cake,
-    earningToken: bscTokens.bth,
+    earningToken: bscTokens.skai,
     contractAddress: {
       97: '',
       56: '0x7092e029E4ce660F9AC081BF6D8a339BE602398b',

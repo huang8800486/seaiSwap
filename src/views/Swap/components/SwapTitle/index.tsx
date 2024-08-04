@@ -34,7 +34,7 @@ export default function SwapTitle() {
       {/* <div className="swap_title_wrap">
         <h2 className="swap_title">Get Fee Return for Swaps</h2>
         <p>
-          Fee reimbursement of up to 50% in BTH tokens, 10% is credited to your BTH Boost. You can change the percentage.
+          Fee reimbursement of up to 50% in SKAI tokens, 10% is credited to your SKAI Boost. You can change the percentage.
         </p>
       </div> */}
     </Wrapper>

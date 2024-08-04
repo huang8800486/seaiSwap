@@ -204,17 +204,17 @@
       "logoURI": "https://pancakeswap.finance/images/tokens/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c.png"
     },
     {
-      "name": "Test BTH Token",
-      "symbol": "BTH",
+      "name": "Test SKAI Token",
+      "symbol": "SKAI",
       "address": "0x516581e56d1b94f53C28FE748CEa373aa9A4D611",
       "chainId": 97,
       "decimals": 18,
       "logoURI": "https://i.ibb.co/TLKPL8K/2091679925081-pic.png"
     },
     {
-      "name": "BTH Token",
-      "symbol": "BTH",
-      "address": "0xe0e470dc373b5DA295D4Cc8d0543D91850dD403A",
+      "name": "SKAI Token",
+      "symbol": "SKAI",
+      "address": "0xec48bF513e3C3eb1b93fCA1E8148f57879c79999",
       "chainId": 56,
       "decimals": 18,
       "logoURI": "https://i.ibb.co/TLKPL8K/2091679925081-pic.png"

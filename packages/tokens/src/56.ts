@@ -2101,13 +2101,13 @@ export const bscTokens = {
     'Green Metaverse Token',
     'https://www.stepn.com/',
   ),
-  bth: new Token(
+  skai: new Token(
     ChainId.BSC,
-    '0xe0e470dc373b5DA295D4Cc8d0543D91850dD403A',
+    '0xec48bF513e3C3eb1b93fCA1E8148f57879c79999',
     18,
-    'BTH',
-    'WebxBank',
-    'https://swap.webxbank.pro',
+    'SKAI',
+    'SKAI',
+    // 'https://swap.webxbank.pro',
   ),
   tem: new Token(
     ChainId.BSC,
