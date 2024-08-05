@@ -67,7 +67,7 @@ export class Pair {
       Pair.getAddress(tokenAmounts[0].currency, tokenAmounts[1].currency),
       18,
       'Cake-LP',
-      'SeaiSwap LPs'
+      'Pancake LPs'
     )
     this.tokenAmounts = tokenAmounts as [CurrencyAmount<Token>, CurrencyAmount<Token>]
   }

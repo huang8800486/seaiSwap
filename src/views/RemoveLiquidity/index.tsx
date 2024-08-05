@@ -30,7 +30,7 @@ import { ZapCheckbox } from 'components/CurrencyInputPanel/ZapCheckbox'
 import { CommitButton } from 'components/CommitButton'
 import { useTranslation } from '@pancakeswap/localization'
 import { useLPApr } from 'state/swap/hooks'
-import { ROUTER_ADDRESS } from 'config/constants/exchange'
+import { ROUTER_ADDRESS,ROUTER_NEW_ADDRESS } from 'config/constants/exchange'
 import { transactionErrorToUserReadableMessage } from 'utils/transactionErrorToUserReadableMessage'
 import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
@@ -152,7 +152,7 @@ export default function RemoveLiquidity({ currencyA, currencyB, currencyIdA, cur
   const [signatureData, setSignatureData] = useState<{ v: number; r: string; s: string; deadline: number } | null>(null)
   const [approval, approveCallback] = useApproveCallback(
     parsedAmounts[Field.LIQUIDITY],
-    isZap ? getZapAddress() : ROUTER_ADDRESS[chainId],
+    isZap ? getZapAddress() : ROUTER_NEW_ADDRESS[chainId],
   )
 
   async function onAttemptToApprove() {
@@ -173,7 +173,7 @@ export default function RemoveLiquidity({ currencyA, currencyB, currencyIdA, cur
       { name: 'verifyingContract', type: 'address' },
     ]
     const domain = {
-      name: 'SeaiSwap LPs',
+      name: 'Pancake LPs',
       version: '1',
       chainId,
       verifyingContract: pair.liquidityToken.address,
@@ -187,7 +187,7 @@ export default function RemoveLiquidity({ currencyA, currencyB, currencyIdA, cur
     ]
     const message = {
       owner: account,
-      spender: ROUTER_ADDRESS[chainId],
+      spender: ROUTER_NEW_ADDRESS[chainId],
       value: liquidityAmount.quotient.toString(),
       nonce: nonce.toHexString(),
       deadline: deadline.toNumber(),

@@ -211,7 +211,7 @@ export default function Invited() {
         </div>
         {/* <span className="note">邀请奖励：1级返0.1%，2级返0.05%</span> */}
       </CommonItem>
-      <CommonItem title="NFT分红" imgName="invite_record">
+      <CommonItem title="NFT分红领取记录" imgName="invite_record">
         <div className="invite_list_nft">
           <div className="list">
             <span>金额</span>

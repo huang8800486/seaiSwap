@@ -10,6 +10,7 @@ import {
   INPUT_FRACTION_AFTER_FEE,
   ONE_HUNDRED_PERCENT,
   ROUTER_ADDRESS,
+  ROUTER_NEW_ADDRESS,
 } from 'config/constants/exchange'
 import { useActiveChainId } from 'hooks/useActiveChainId'
 import { useContract } from 'hooks/useContract'
@@ -37,7 +38,8 @@ export function useRouterContract() {
 }
 
 export function useRouterContract2() {
-  return useContract<IPancakeRouter02>('0x10ED43C718714eb63d5aA57B78B54704E256024E', IPancakeRouter02ABI, true)
+  const { chainId } = useActiveChainId()
+  return useContract<IPancakeRouter02>(ROUTER_NEW_ADDRESS[chainId], IPancakeRouter02ABI, true)
 }
 
 // computes price breakdown for the trade

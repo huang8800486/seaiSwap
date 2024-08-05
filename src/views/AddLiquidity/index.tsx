@@ -28,7 +28,7 @@ import { SUPPORT_ZAP } from 'config/constants/supportChains'
 import { ContractMethodName } from 'utils/types'
 import { transactionErrorToUserReadableMessage } from 'utils/transactionErrorToUserReadableMessage'
 import { useLPApr } from 'state/swap/hooks'
-import { ROUTER_ADDRESS } from 'config/constants/exchange'
+import { ROUTER_ADDRESS,ROUTER_NEW_ADDRESS } from 'config/constants/exchange'
 import { LightCard } from '../../components/Card'
 import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
@@ -221,11 +221,11 @@ export default function AddLiquidity({ currencyA, currencyB }) {
   // check whether the user has approved the router on the tokens
   const [approvalA, approveACallback] = useApproveCallback(
     parsedAmounts[Field.CURRENCY_A],
-    preferZapInstead ? zapAddress : ROUTER_ADDRESS[chainId],
+    preferZapInstead ? zapAddress : ROUTER_NEW_ADDRESS[chainId],
   )
   const [approvalB, approveBCallback] = useApproveCallback(
     parsedAmounts[Field.CURRENCY_B],
-    preferZapInstead ? zapAddress : ROUTER_ADDRESS[chainId],
+    preferZapInstead ? zapAddress : ROUTER_NEW_ADDRESS[chainId],
   )
 
   const addTransaction = useTransactionAdder()
