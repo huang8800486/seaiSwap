@@ -11,6 +11,7 @@ import Footer from "../../components/Footer";
 import MenuItems from "../../components/MenuItems/MenuItems";
 import { SubMenuItems } from "../../components/SubMenuItems";
 import BottomNav from "../../components/BottomNav";
+import SwapNav from "../../../../../src/views/Swap/components/SwapNav";
 import { useMatchBreakpoints } from "../../contexts";
 import CakePrice from "../../components/CakePrice/CakePrice";
 import Logo from "./components/Logo";
@@ -311,6 +312,7 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
                 <p>Based on Binance Smart Chain</p>
               </div>
             </SubNavContent>
+            <SwapNav />
           </>
         )}
       </Wrapper>

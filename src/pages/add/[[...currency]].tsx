@@ -20,7 +20,7 @@ const AddLiquidityPage = () => {
   const native = useNativeCurrency()
 
   const [currencyIdA, currencyIdB] = router.query.currency || [
-    native.symbol,
+    USDT[chainId]?.address ?? native.symbol,
     SKAI[chainId]?.address ?? USDC[chainId]?.address,
   ]
 

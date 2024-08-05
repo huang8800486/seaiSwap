@@ -212,9 +212,10 @@ export function queryParametersToSwapState(
   let inputCurrency = parseCurrencyFromURLParameter(parsedQs.inputCurrency) || (nativeSymbol ?? DEFAULT_INPUT_CURRENCY)
   let outputCurrency =
     parseCurrencyFromURLParameter(parsedQs.outputCurrency) || (defaultOutputCurrency ?? DEFAULT_OUTPUT_CURRENCY)
-  console.log('nativeSymbol', nativeSymbol)
-  console.log('defaultOutputCurrency', defaultOutputCurrency)
-  console.log('DEFAULT_OUTPUT_CURRENCY', DEFAULT_OUTPUT_CURRENCY)
+  // console.log('parsedQs.outputCurrency', parsedQs.outputCurrency)
+  // console.log('nativeSymbol', nativeSymbol)
+  // console.log('defaultOutputCurrency', defaultOutputCurrency)
+  // console.log('DEFAULT_OUTPUT_CURRENCY', DEFAULT_OUTPUT_CURRENCY)
   if (inputCurrency === outputCurrency) {
     if (typeof parsedQs.outputCurrency === 'string') {
       inputCurrency = ''
@@ -254,7 +255,11 @@ export function useDefaultsFromURLSearch():
 
   useEffect(() => {
     if (!chainId || !native) return
-    const parsed = queryParametersToSwapState(query, native.symbol, SKAI[chainId]?.address ?? USDC[chainId]?.address)
+    const parsed = queryParametersToSwapState(
+      query,
+      USDT[chainId]?.address ?? native.symbol,
+      SKAI[chainId]?.address ?? USDC[chainId]?.address,
+    )
 
     dispatch(
       replaceSwapState({

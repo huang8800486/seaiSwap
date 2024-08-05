@@ -101,6 +101,7 @@ const IntroWraper = styled.div`
     overflow: hidden;
     position: relative;
     padding: ${getMedia(['20px 0 62px', '60px 0 62px', '80px 0 62px'])};
+    margin-bottom: 90px;
     .footer_bg {
       position: absolute;
       top: -62px;

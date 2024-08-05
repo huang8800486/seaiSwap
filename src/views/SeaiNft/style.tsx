@@ -13,6 +13,8 @@ export const BodyWrap = styled.div`
   margin: 0 auto;
   color: #fff;
   position: relative;
+
+  margin-bottom: 90px;
   .nft_list_wrap {
     width: 100%;
     position: relative;

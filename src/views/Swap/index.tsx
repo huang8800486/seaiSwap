@@ -13,16 +13,16 @@ import { Field } from '../../state/swap/actions'
 import { useSwapState, useSingleTokenSwapInfo } from '../../state/swap/hooks'
 import { useExchangeChartManager } from '../../state/user/hooks'
 import Page from '../Page'
-import PriceChartContainer from './components/Chart/PriceChartContainer'
+// import PriceChartContainer from './components/Chart/PriceChartContainer'
 
 import SwapForm from './components/SwapForm'
 import StableSwapFormContainer from './StableSwap'
 import { StyledInputCurrencyWrapper, StyledSwapContainer } from './styles'
 import SwapTab, { SwapType } from './components/SwapTab'
-import SwapNavTitle from './components/SwapNavTitle'
+// import SwapNavTitle from './components/SwapNavTitle'
 import SwapTitle from './components/SwapTitle/index'
-import SwapNav from './components/SwapNav/index'
-import Liquidity from '../../pages/liquidity'
+// import SwapNav from './components/SwapNav/index'
+// import Liquidity from '../../pages/liquidity'
 import CommonBox from '../Home/components/BitbankHome/CommonBox'
 
 const CHART_SUPPORT_CHAIN_IDS = [ChainId.BSC]
@@ -110,7 +110,7 @@ export default function Swap() {
           </Box>
         )}
       </Page>
-      <SwapNav />
+      {/* <SwapNav /> */}
     </>
   )
 }

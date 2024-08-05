@@ -9,7 +9,7 @@ export const getMedia = (value: string[]) => () => {
 }
 export const Wrapper = styled.div`
   width: 100%;
-  position: sticky;
+  position: fixed;
   left: 0;
   bottom: 0;
   background-color: #020b15;
@@ -18,11 +18,14 @@ export const Wrapper = styled.div`
   max-width: 436px;
   right: 0;
   margin: 0 auto;
-  padding-bottom: env(safe-area-inset-bottom);
-  html[data-useragent*='TokenPocket_iOS'] & {
-    padding-bottom: 70px;
-  }
   z-index: 10;
+  .swap_nav_wrap_box {
+    width: 100%;
+    padding-bottom: env(safe-area-inset-bottom);
+    html[data-useragent*='TokenPocket_iOS'] & {
+      padding-bottom: 90px;
+    }
+  }
   .swap_nav_wrap {
     width: 100%;
     display: flex;
@@ -50,30 +53,32 @@ export default function SwapNav() {
   const { t } = useTranslation()
   return (
     <Wrapper>
-      <div className="swap_nav_wrap">
-        <div className="swap_nav">
-          <Link href="/home">
-            <h3>
-              <img src="/images/icons/home.png" alt="" />
-            </h3>
-            <p>{t('Home')}</p>
-          </Link>
-        </div>
-        <div className="swap_nav">
-          <Link href="/liquidity">
-            <h3>
-              <img src="/images/icons/liquidity.png" alt="" />
-            </h3>
-            <p>{t('Liquidity')}</p>
-          </Link>
-        </div>
-        <div className="swap_nav">
-          <Link href="/nft">
-            <h3>
-              <img src="/images/icons/nft.png" alt="" />
-            </h3>
-            <p>{t('NFT')}</p>
-          </Link>
+      <div className="swap_nav_wrap_box">
+        <div className="swap_nav_wrap">
+          <div className="swap_nav">
+            <Link href="/home">
+              <h3>
+                <img src="/images/icons/home.png" alt="" />
+              </h3>
+              <p>{t('Home')}</p>
+            </Link>
+          </div>
+          <div className="swap_nav">
+            <Link href="/liquidity">
+              <h3>
+                <img src="/images/icons/liquidity.png" alt="" />
+              </h3>
+              <p>{t('Liquidity')}</p>
+            </Link>
+          </div>
+          <div className="swap_nav">
+            <Link href="/nft">
+              <h3>
+                <img src="/images/icons/nft.png" alt="" />
+              </h3>
+              <p>{t('NFT')}</p>
+            </Link>
+          </div>
         </div>
       </div>
     </Wrapper>
