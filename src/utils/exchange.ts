@@ -36,6 +36,10 @@ export function useRouterContract() {
   return useContract<IPancakeRouter02>(ROUTER_ADDRESS[chainId], IPancakeRouter02ABI, true)
 }
 
+export function useRouterContract2() {
+  return useContract<IPancakeRouter02>('0x10ED43C718714eb63d5aA57B78B54704E256024E', IPancakeRouter02ABI, true)
+}
+
 // computes price breakdown for the trade
 export function computeTradePriceBreakdown(trade?: Trade<Currency, Currency, TradeType> | null): {
   priceImpactWithoutFee: Percent | undefined

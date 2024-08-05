@@ -52,7 +52,7 @@ import {
   useZapModeManager,
 } from '../../state/user/hooks'
 import { calculateGasMargin } from '../../utils'
-import { calculateSlippageAmount, useRouterContract } from '../../utils/exchange'
+import { calculateSlippageAmount, useRouterContract,useRouterContract2 } from '../../utils/exchange'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { wrappedCurrency } from '../../utils/wrappedCurrency'
 import Dots from '../../components/Loader/Dots'
@@ -230,7 +230,8 @@ export default function AddLiquidity({ currencyA, currencyB }) {
 
   const addTransaction = useTransactionAdder()
 
-  const routerContract = useRouterContract()
+  // const routerContract = useRouterContract()
+  const routerContract = useRouterContract2()
 
   async function onAdd() {
     if (!chainId || !account || !routerContract) return
