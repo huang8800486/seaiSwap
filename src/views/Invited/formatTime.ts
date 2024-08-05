@@ -23,12 +23,12 @@ export function formatTime(dateTime: number, format = 'yyyy-MM-dd hh:mm:ss') {
 }
 export function formatNumMin(value: string) {
   let result = ''
+  const regext = /0{5,}/
   if (value.indexOf('.') !== -1) {
-    let news = value.split('.')[1]
-    if (news.lastIndexOf('0') >= 4) {
-      let pos1 = news.substring(0, news.lastIndexOf('0'))
-      pos1 = '0.0' + `{${pos1.length}}`
-      let pos2 = news.substring(news.lastIndexOf('0'))
+    if (regext.test(value)) {
+      const execs = regext.exec(value)
+      const pos1 = '0.0' + `{${execs[0].length}}`
+      let pos2 = value.split(execs[0])[1]
       result = pos1 + pos2
     } else {
       result = value

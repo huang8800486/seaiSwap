@@ -130,7 +130,7 @@ export default function Invited() {
           for (let i = 0; i < result.length; i++) {
             value.push({ amount: 0, time: '' })
             const forma = formatUnits(result[i].amount.toString(), 18).toString()
-            value[i].amount = forma
+            value[i].amount = formatNumMin(forma)
             value[i].time = formatTime(result[i].time.toString() * 1000)
             console.log('value', value)
           }
