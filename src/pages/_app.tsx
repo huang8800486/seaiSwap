@@ -70,7 +70,7 @@ function MyApp(props: AppProps<{ initialReduxState: any }>) {
           content="Cheaper and faster than Uniswap? Discover Skai, the leading DEX on BNB Smart Chain (BSC) with the best farms in DeFi and a lottery for SKAI."
         />
         <meta name="theme-color" content="#1FC7D4" />
-        <meta name="twitter:image" content="https://i.ibb.co/TLKPL8K/2091679925081-pic.png" />
+        <meta name="twitter:image" content="https://i.ibb.co/YPNVYNw/8481722740197-pic.jpg" />
         <meta
           name="twitter:description"
           content="The most popular AMM on BSC! Earn SKAI through yield farming or win it in the Lottery, then stake it in Syrup Pools to earn more tokens! Initial Farm Offerings (new token launch model pioneered by Skai), NFTs, and more, on a platform you can trust."

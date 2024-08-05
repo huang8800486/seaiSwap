@@ -254,7 +254,7 @@ export function useDefaultsFromURLSearch():
 
   useEffect(() => {
     if (!chainId || !native) return
-    const parsed = queryParametersToSwapState(query, native.symbol, USDT[chainId]?.address ?? USDC[chainId]?.address)
+    const parsed = queryParametersToSwapState(query, native.symbol, SKAI[chainId]?.address ?? USDC[chainId]?.address)
 
     dispatch(
       replaceSwapState({

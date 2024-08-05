@@ -1,4 +1,4 @@
-import { USDT, USDC } from '@pancakeswap/tokens'
+import { USDT, USDC, SKAI } from '@pancakeswap/tokens'
 import { useCurrency } from 'hooks/Tokens'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useNativeCurrency from 'hooks/useNativeCurrency'
@@ -21,7 +21,7 @@ const AddLiquidityPage = () => {
 
   const [currencyIdA, currencyIdB] = router.query.currency || [
     native.symbol,
-    USDT[chainId]?.address ?? USDC[chainId]?.address,
+    SKAI[chainId]?.address ?? USDC[chainId]?.address,
   ]
 
   const currencyA = useCurrency(currencyIdA)
