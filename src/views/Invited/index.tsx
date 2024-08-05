@@ -58,7 +58,7 @@ export default function Invited() {
             })
           }
           // console.log('array', array)
-          setAwardList(array)
+          setAwardList(array.reverse())
         })
         .catch((err) => {
           // setAwardList([])

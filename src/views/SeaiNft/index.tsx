@@ -1,20 +1,23 @@
 import { useMemo, useEffect, useState } from 'react'
-import { Flex, Text, Box, useMatchBreakpoints, Input, Button } from '@pancakeswap/uikit'
+import { Flex, Text, useToast, useMatchBreakpoints, Input, Button } from '@pancakeswap/uikit'
 import { useWeb3LibraryContext, useWeb3React } from '@pancakeswap/wagmi'
 import { Contract } from '@ethersproject/contracts'
 import { Web3Provider } from '@ethersproject/providers'
 import { useTranslation } from '@pancakeswap/localization'
 import { getContract } from 'utils/contractHelpers'
+import { formatUnits } from '@ethersproject/units'
 import { useSigner } from 'wagmi'
-import { NFT_ADDRESS } from '@pancakeswap/sdk'
+import { NFT_ADDRESS, NFT_DIVIDENDS_ADDRESS } from '@pancakeswap/sdk'
 import { ROUTER_ADDRESS } from 'config/constants/exchange'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useOptionsNftList } from 'state/options/hooks'
 import nftABI from 'config/abi/nftABI.json'
+import nftDividendsABI from 'config/abi/nftDividends.json'
 import { http } from './https/index'
 import { BodyWrap } from './style'
 import CommonBox from '../Home/components/BitbankHome/CommonBox'
 import CommonItem from '../Home/components/BitbankHome/CommonItem'
+import { formatTime, formatNumMin } from '../Invited/formatTime'
 
 export default function Invited() {
   const { t } = useTranslation()
@@ -22,12 +25,18 @@ export default function Invited() {
   const { isMobile } = useMatchBreakpoints()
   const { account } = useWeb3React()
   const { data: signer } = useSigner()
-  const [isFlag, setIsFlag] = useState(false)
+  const { toastError, toastSuccess } = useToast()
+  const [remaining, setRemaining] = useState(0)
+  const [rewardInfo, setRewardInfo] = useState([])
   const nftAddres = NFT_ADDRESS[chainId] || NFT_ADDRESS[-1]
+  const nftdividendsAddres = NFT_DIVIDENDS_ADDRESS[chainId] || NFT_DIVIDENDS_ADDRESS[-1]
   const [optionsNftList, setOptionsNftList] = useOptionsNftList()
   const nftPoolContract = useMemo(() => {
     return getContract({ abi: nftABI, address: nftAddres, signer })
   }, [signer, nftAddres])
+  const nftDividendsContract = useMemo(() => {
+    return getContract({ abi: nftDividendsABI, address: nftdividendsAddres, signer })
+  }, [signer, nftdividendsAddres])
 
   useEffect(() => {
     if (nftPoolContract && account) {
@@ -102,8 +111,53 @@ export default function Invited() {
         })
     }
   }, [nftPoolContract, account, setOptionsNftList])
+  useEffect(() => {
+    if (nftDividendsContract && account) {
+      nftDividendsContract
+        .getRemainingDividends('0x47821Fe7C1Ff2654Dc27EdBcD0c4Ea46019C4F15')
+        .then((result) => {
+          const valuue = +formatUnits(result.toString(), 18).toString()
+          setRemaining(+valuue.toFixed(5))
+        })
+        .catch((err) => {
+          console.log('getRemainingDividends', err)
+        })
+      nftDividendsContract
+        .getTokenRewardInfoOfAddress('0x47821Fe7C1Ff2654Dc27EdBcD0c4Ea46019C4F15')
+        .then((result) => {
+          console.log('result.length', result.length)
+          const value = []
+          for (let i = 0; i < result.length; i++) {
+            value.push({ amount: 0, time: '' })
+            const forma = formatUnits(result[i].amount.toString(), 18).toString()
+            value[i].amount = forma
+            value[i].time = formatTime(result[i].time.toString() * 1000)
+            console.log('value', value)
+          }
+          setRewardInfo(value.reverse())
+          console.log('getTokenRewardInfoOfAddress', result)
+        })
+        .catch((err) => {
+          console.log('getTokenRewardInfoOfAddress', err)
+        })
+    }
+  }, [nftDividendsContract, account, setOptionsNftList])
   const receiveClick = () => {
-    console.log('1')
+    nftDividendsContract
+      .withdraw()
+      .then((result) => {
+        result
+          .wait()
+          .then((res: any) => {
+            toastSuccess(t('Confirm'))
+          })
+          .catch((err: any) => {
+            toastError(t('Cancel'))
+          })
+      })
+      .catch((err) => {
+        toastError(t('Cancel'))
+      })
   }
   const [nftlist, setNftlist] = useState([
     {
@@ -140,12 +194,18 @@ export default function Invited() {
         </div>
         <div className="receive_content">
           <div className="receive_text">
-            <i>0</i>
+            <i>{remaining}</i>
             <em>USDT</em>
           </div>
         </div>
         <div className="button_wrap">
-          <Button as="a" scale="md" onClick={receiveClick} style={{ width: '100%', borderRadius: '0' }}>
+          <Button
+            as="a"
+            scale="md"
+            disabled={!remaining}
+            onClick={receiveClick}
+            style={{ width: '100%', borderRadius: '0' }}
+          >
             领取
           </Button>
         </div>
@@ -157,10 +217,10 @@ export default function Invited() {
             <span>金额</span>
             <span>时间</span>
           </div>{' '}
-          {nftlist.map((items, index) => (
-            <div className="list" key={items?.name}>
+          {rewardInfo.map((items, index) => (
+            <div className="list" key={items?.amount}>
               {/* <span>{items}</span> */}
-              <span>{items?.name}</span>
+              <span>{items?.amount}</span>
               <span>{items?.time}</span>
             </div>
           ))}
