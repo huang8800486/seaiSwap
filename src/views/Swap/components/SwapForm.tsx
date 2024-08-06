@@ -11,6 +11,7 @@ import {
   ArrowNewDowIcon,
   Skeleton,
 } from '@pancakeswap/uikit'
+import BigNumber from 'bignumber.js'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -88,7 +89,15 @@ export default function SwapForm({ setIsChartDisplayed, isChartDisplayed, isAcce
 
   // get custom setting values for user
   const [allowedSlippage] = useUserSlippageTolerance()
-
+  // max
+  const [currentMax, setCurrentMax] = useState(-1)
+  const maxList = [
+    { text: '10%', value: 10 },
+    { text: '25%', value: 25 },
+    { text: '50%', value: 50 },
+    { text: '75%', value: 75 },
+    { text: 'Max', value: 100 },
+  ]
   // swap state & price data
   const {
     independentField,
@@ -194,6 +203,19 @@ export default function SwapForm({ setIsChartDisplayed, isChartDisplayed, isAcce
     }
   }, [maxAmountInput, onUserInput])
 
+  const onSetMax = useCallback(
+    (sliderPercent: number, index: number) => {
+      if (maxAmountInput) {
+        const amount = new BigNumber(+maxAmountInput)
+        const value = amount.dividedBy(100).multipliedBy(sliderPercent)
+        // console.log('value', value.isNaN())
+        onUserInput(Field.INPUT, value.isNaN() ? '0' : `${value}`)
+      }
+      setCurrentMax(index)
+    },
+    [maxAmountInput, onUserInput],
+  )
+
   const handleOutputSelect = useCallback(
     (currencyOutput) => {
       onCurrencySelection(Field.OUTPUT, currencyOutput)
@@ -246,6 +268,44 @@ export default function SwapForm({ setIsChartDisplayed, isChartDisplayed, isAcce
               commonBasesType={CommonBasesType.SWAP_LIMITORDER}
             />
 
+            {account && currencies[Field.INPUT] && !atMaxAmountInput && (
+              <Box style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '6px' }}>
+                {maxList.map((item, index) => (
+                  <Button
+                    ml="5px"
+                    scale="xs"
+                    onClick={() => onSetMax(item.value, index)}
+                    style={{
+                      textTransform: 'uppercase',
+                      borderRadius: '12px',
+                      color: '#CCCCCC',
+                      background: '#27334d',
+                      padding: '0 11px',
+                      border: '1px solid #384767',
+                      borderColor: currentMax === index ? '#02C4F4' : '#384767',
+                      boxShadow: 'none',
+                    }}
+                  >
+                    {item.text}
+                  </Button>
+                ))}
+                {/* <Button scale="xs" variant="secondary" style={{ textTransform: 'uppercase' }}>
+                  10%
+                </Button>
+                <Button scale="xs" variant="secondary" style={{ textTransform: 'uppercase' }}>
+                  25%
+                </Button>
+                <Button scale="xs" variant="secondary" style={{ textTransform: 'uppercase' }}>
+                  50%
+                </Button>
+                <Button scale="xs" variant="secondary" style={{ textTransform: 'uppercase' }}>
+                  75%
+                </Button>
+                <Button scale="xs" variant="secondary" style={{ textTransform: 'uppercase' }}>
+                  {t('Max')}
+                </Button> */}
+              </Box>
+            )}
             <AutoColumn justify="space-between">
               <AutoRow justify={isExpertMode ? 'space-between' : 'center'} style={{ padding: '0 1rem' }}>
                 <SwitchIconButton

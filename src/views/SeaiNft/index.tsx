@@ -114,7 +114,7 @@ export default function Invited() {
   useEffect(() => {
     if (nftDividendsContract && account) {
       nftDividendsContract
-        .getRemainingDividends('0x47821Fe7C1Ff2654Dc27EdBcD0c4Ea46019C4F15')
+        .getRemainingDividends(account)
         .then((result) => {
           const valuue = +formatUnits(result.toString(), 18).toString()
           setRemaining(+valuue.toFixed(5))
@@ -123,7 +123,7 @@ export default function Invited() {
           console.log('getRemainingDividends', err)
         })
       nftDividendsContract
-        .getTokenRewardInfoOfAddress('0x47821Fe7C1Ff2654Dc27EdBcD0c4Ea46019C4F15')
+        .getTokenRewardInfoOfAddress(account)
         .then((result) => {
           console.log('result.length', result.length)
           const value = []

@@ -64,6 +64,14 @@ export default function SwapNav() {
             </Link>
           </div>
           <div className="swap_nav">
+            <Link href="/swap">
+              <h3>
+                <img src="/images/icons/trade.png" alt="" />
+              </h3>
+              <p>{t('Swap')}</p>
+            </Link>
+          </div>
+          <div className="swap_nav">
             <Link href="/liquidity">
               <h3>
                 <img src="/images/icons/liquidity.png" alt="" />

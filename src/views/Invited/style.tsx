@@ -8,7 +8,7 @@ export const getMedia = (value: string[]) => () => {
 
 export const BodyWrap = styled.div`
   max-width: 1000px;
-  padding: ${getMedia(['10px 20px', '30px 20px', '50px 20px'])};
+  padding: ${getMedia(['10px 0', '30px 10px', '50px 20px'])};
   min-height: 100vh;
   margin: 0 auto;
   color: #fff;
@@ -16,7 +16,7 @@ export const BodyWrap = styled.div`
 export const InviterdWrap = styled.div`
   width: 100%;
   position: relative;
-  margin-bottom: 90px;
+  padding-bottom: 90px;
   .receive_content {
     width: 100%;
     position: relative;
