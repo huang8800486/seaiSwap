@@ -36,6 +36,12 @@ export default function BitBanner() {
     {
       image: '/images/seai/banner_05.jpg',
     },
+    {
+      image: '/images/seai/banner_06.jpg',
+    },
+    {
+      image: '/images/seai/banner_07.jpg',
+    },
   ]
   return (
     <Wrapper>

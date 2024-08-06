@@ -12,6 +12,7 @@ import {
   Skeleton,
 } from '@pancakeswap/uikit'
 import BigNumber from 'bignumber.js'
+import { formatUnits } from '@ethersproject/units'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -125,7 +126,6 @@ export default function SwapForm({ setIsChartDisplayed, isChartDisplayed, isAcce
     parsedAmount,
     inputError: swapInputError,
   } = useDerivedSwapInfo(independentField, typedValue, inputCurrency, outputCurrency, recipient)
-
   const {
     wrapType,
     execute: onWrap,
@@ -167,6 +167,9 @@ export default function SwapForm({ setIsChartDisplayed, isChartDisplayed, isAcce
       ? parsedAmounts[independentField]?.toExact() ?? ''
       : parsedAmounts[dependentField]?.toSignificant(6) ?? '',
   }
+  // console.log('formattedAmounts', typedValue, independentField, Field.INPUT, parsedAmounts)
+  // console.log('parsedAmounts[independentField]?.toExact()', parsedAmounts[independentField]?.toExact())
+  // console.log('parsedAmounts[dependentField]?.toSignificant(6))', parsedAmounts[dependentField]?.toSignificant(6))
 
   // check whether the user has approved the router on the input token
   const [approval, approveCallback] = useApproveCallbackFromTrade(trade, allowedSlippage, chainId)
@@ -201,25 +204,23 @@ export default function SwapForm({ setIsChartDisplayed, isChartDisplayed, isAcce
 
   const handleMaxInput = useCallback(() => {
     if (maxAmountInput) {
+      // console.log('maxAmountInput.toExact()', maxAmountInput.toExact())
       onUserInput(Field.INPUT, maxAmountInput.toExact())
     }
   }, [maxAmountInput, onUserInput])
 
   const onSetMax = useCallback(
     (sliderPercent: number, index: number) => {
-      // console.log(
-      //   'maxAmountInput',
-      //   maxAmountInput,
-      //   selectedCurrencyBalance?.toSignificant(selectedCurrencyBalance?.currency.decimals),
-      // )
+      // console.log('maxAmountInput', selectedCurrencyBalance?.toSignificant(selectedCurrencyBalance?.currency?.decimals))
       if (maxAmountInput) {
         const amount = new BigNumber(
           selectedCurrencyBalance?.toSignificant(selectedCurrencyBalance?.currency?.decimals),
         )
+        const bigs = amount.dividedBy(100).multipliedBy(sliderPercent)
         // console.log('value', selectedCurrencyBalance?.toSignificant(selectedCurrencyBalance?.currency.decimals))
-        const value = amount.dividedBy(100).multipliedBy(sliderPercent)
-        // console.log('value', value.isNaN())
-        onUserInput(Field.INPUT, value.isNaN() ? '0' : `${value}`)
+        const value = bigs.toFixed(selectedCurrencyBalance?.currency?.decimals)
+        // console.log('value', value)
+        onUserInput(Field.INPUT, `${value}`)
       }
       setCurrentMax(index)
     },
