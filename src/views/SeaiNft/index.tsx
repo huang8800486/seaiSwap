@@ -1,4 +1,4 @@
-import { useMemo, useEffect, useState } from 'react'
+import { useMemo, useEffect, useState, useCallback } from 'react'
 import { Flex, Text, useToast, useMatchBreakpoints, Input, Button } from '@pancakeswap/uikit'
 import { useWeb3LibraryContext, useWeb3React } from '@pancakeswap/wagmi'
 import { Contract } from '@ethersproject/contracts'
@@ -111,17 +111,21 @@ export default function Invited() {
         })
     }
   }, [nftPoolContract, account, setOptionsNftList])
+
+  const getRemaining = useCallback(() => {
+    nftDividendsContract
+      .getRemainingDividends('0xc0F9d945107c33CeDB822e21Ba334A54534c40CB')
+      .then((result) => {
+        const valuue = +formatUnits(result.toString(), 18).toString()
+        setRemaining(+valuue.toFixed(5))
+      })
+      .catch((err) => {
+        console.log('getRemainingDividends', err)
+      })
+  }, [])
   useEffect(() => {
     if (nftDividendsContract && account) {
-      nftDividendsContract
-        .getRemainingDividends(account)
-        .then((result) => {
-          const valuue = +formatUnits(result.toString(), 18).toString()
-          setRemaining(+valuue.toFixed(5))
-        })
-        .catch((err) => {
-          console.log('getRemainingDividends', err)
-        })
+      getRemaining()
       nftDividendsContract
         .getTokenRewardInfoOfAddress(account)
         .then((result) => {
@@ -141,7 +145,7 @@ export default function Invited() {
           console.log('getTokenRewardInfoOfAddress', err)
         })
     }
-  }, [nftDividendsContract, account, setOptionsNftList])
+  }, [nftDividendsContract, account, setOptionsNftList, getRemaining])
   const receiveClick = () => {
     nftDividendsContract
       .withdraw()
@@ -149,6 +153,7 @@ export default function Invited() {
         result
           .wait()
           .then((res: any) => {
+            getRemaining()
             toastSuccess(t('Confirm'))
           })
           .catch((err: any) => {

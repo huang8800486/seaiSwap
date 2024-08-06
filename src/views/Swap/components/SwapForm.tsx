@@ -36,6 +36,7 @@ import { useExpertModeManager, useUserSlippageTolerance } from 'state/user/hooks
 import replaceBrowserHistory from '@pancakeswap/utils/replaceBrowserHistory'
 import { currencyId } from 'utils/currencyId'
 
+import { useCurrencyBalance } from '../../../state/wallet/hooks'
 import CurrencyInputHeader from './CurrencyInputHeader'
 import SwapCommitButton from './SwapCommitButton'
 import useWarningImport from '../hooks/useWarningImport'
@@ -116,6 +117,7 @@ export default function SwapForm({ setIsChartDisplayed, isChartDisplayed, isAcce
     }),
     [inputCurrency, outputCurrency],
   )
+  const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currencies[Field.INPUT] ?? undefined)
 
   const {
     v2Trade,
@@ -205,15 +207,23 @@ export default function SwapForm({ setIsChartDisplayed, isChartDisplayed, isAcce
 
   const onSetMax = useCallback(
     (sliderPercent: number, index: number) => {
+      // console.log(
+      //   'maxAmountInput',
+      //   maxAmountInput,
+      //   selectedCurrencyBalance?.toSignificant(selectedCurrencyBalance?.currency.decimals),
+      // )
       if (maxAmountInput) {
-        const amount = new BigNumber(+maxAmountInput)
+        const amount = new BigNumber(
+          selectedCurrencyBalance?.toSignificant(selectedCurrencyBalance?.currency?.decimals),
+        )
+        // console.log('value', selectedCurrencyBalance?.toSignificant(selectedCurrencyBalance?.currency.decimals))
         const value = amount.dividedBy(100).multipliedBy(sliderPercent)
         // console.log('value', value.isNaN())
         onUserInput(Field.INPUT, value.isNaN() ? '0' : `${value}`)
       }
       setCurrentMax(index)
     },
-    [maxAmountInput, onUserInput],
+    [maxAmountInput, onUserInput, selectedCurrencyBalance],
   )
 
   const handleOutputSelect = useCallback(
@@ -268,7 +278,7 @@ export default function SwapForm({ setIsChartDisplayed, isChartDisplayed, isAcce
               commonBasesType={CommonBasesType.SWAP_LIMITORDER}
             />
 
-            {account && currencies[Field.INPUT] && !atMaxAmountInput && (
+            {account && currencies[Field.INPUT] && (
               <Box style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '6px' }}>
                 {maxList.map((item, index) => (
                   <Button

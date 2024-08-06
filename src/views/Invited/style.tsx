@@ -16,7 +16,7 @@ export const BodyWrap = styled.div`
 export const InviterdWrap = styled.div`
   width: 100%;
   position: relative;
-  padding-bottom: 90px;
+  padding-bottom: 180px;
   .receive_content {
     width: 100%;
     position: relative;
